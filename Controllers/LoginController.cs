@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dot.Net.WebApi.Domain;
 using Dot.Net.WebApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
- 
+
 namespace Dot.Net.WebApi.Controllers
 {
     [Route("[controller]")]
@@ -34,8 +29,8 @@ namespace Dot.Net.WebApi.Controllers
         [HttpGet("/error")]
         public IActionResult Error()
         {
-            string errorMessage= "You are not authorized for the requested data.";
-            
+            string errorMessage = "You are not authorized for the requested data.";
+
             return View(new UnauthorizedObjectResult(errorMessage));
         }
 

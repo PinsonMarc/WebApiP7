@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dot.Net.WebApi.Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
- 
+
 namespace Dot.Net.WebApi.Controllers
 {
     [Route("[controller]")]
@@ -20,16 +15,16 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpGet("/curvePoint/add")]
-        public IActionResult AddCurvePoint([FromBody]CurvePoint curvePoint)
+        public IActionResult AddCurvePoint([FromBody] CurvePoint curvePoint)
         {
             return View("curvePoint/add");
         }
 
         [HttpGet("/curvePoint/add")]
-        public IActionResult Validate([FromBody]CurvePoint curvePoint)
+        public IActionResult Validate([FromBody] CurvePoint curvePoint)
         {
             // TODO: check data valid and save to db, after saving return bid list
-            return View("curvePoint/add"    );
+            return View("curvePoint/add");
         }
 
         [HttpGet("/curvePoint/update/{id}")]

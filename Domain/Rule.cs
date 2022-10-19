@@ -1,0 +1,17 @@
+using System;
+
+namespace Dot.Net.WebApi.Controllers
+{
+    public class Rule
+    {
+        public int Id { get; set; }
+        public string RuleNameId { get;set;}
+        public RuleName RuleName { get;set;}
+        public string Description {get;set;}
+        public string Json {get;set;}
+        public string Template {get;set;}
+        public string SqlStr {get;set;}
+        public string SqlPart {get;set;}
+
+    }
+}

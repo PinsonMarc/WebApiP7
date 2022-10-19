@@ -1,8 +1,5 @@
-using Dot.Net.WebApi.Data;
-using System.Linq;
 using Dot.Net.WebApi.Domain;
-using System;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Dot.Net.WebApi.Repositories
 {

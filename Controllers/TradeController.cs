@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dot.Net.WebApi.Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
- 
+
 namespace Dot.Net.WebApi.Controllers
 {
     [Route("[controller]")]
@@ -21,13 +16,13 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpGet("/trade/add")]
-        public IActionResult AddTrade([FromBody]Trade trade)
+        public IActionResult AddTrade([FromBody] Trade trade)
         {
             return View("trade/add");
         }
 
         [HttpGet("/trade/add")]
-        public IActionResult Validate([FromBody]Trade trade)
+        public IActionResult Validate([FromBody] Trade trade)
         {
             // TODO: check data valid and save to db, after saving return Trade list
             return View("trade/add");

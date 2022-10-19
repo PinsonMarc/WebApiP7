@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dot.Net.WebApi.Domain;
 using Dot.Net.WebApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
- 
+using System;
+
 namespace Dot.Net.WebApi.Controllers
 {
     [Route("[controller]")]
@@ -26,21 +22,21 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpGet("/user/add")]
-        public IActionResult AddUser([FromBody]User user)
+        public IActionResult AddUser([FromBody] User user)
         {
             return View("user/add");
         }
 
         [HttpGet("/user/validate")]
-        public IActionResult Validate([FromBody]User user)
+        public IActionResult Validate([FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
                 return Redirect("user/add");
             }
-           
-           _userRepository.Add(user);
-           
+
+            _userRepository.Add(user);
+
             return Redirect("user/list");
         }
 
@@ -48,10 +44,10 @@ namespace Dot.Net.WebApi.Controllers
         public IActionResult ShowUpdateForm(int id)
         {
             User user = _userRepository.FindById(id);
-            
+
             if (user == null)
                 throw new ArgumentException("Invalid user Id:" + id);
-            
+
             return View("user/update");
         }
 
@@ -66,10 +62,10 @@ namespace Dot.Net.WebApi.Controllers
         public IActionResult DeleteUser(int id)
         {
             User user = _userRepository.FindById(id);
-            
+
             if (user == null)
                 throw new ArgumentException("Invalid user Id:" + id);
-                        
+
             return Redirect("/user/list");
         }
     }

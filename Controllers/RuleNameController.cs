@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dot.Net.WebApi.Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
- 
+
 namespace Dot.Net.WebApi.Controllers
 {
     [Route("[controller]")]
@@ -21,13 +15,13 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpGet("/ruleName/add")]
-        public IActionResult AddRuleName([FromBody]RuleName trade)
+        public IActionResult AddRuleName([FromBody] RuleName trade)
         {
             return View("ruleName/add");
         }
 
         [HttpGet("/ruleName/add")]
-        public IActionResult Validate([FromBody]RuleName trade)
+        public IActionResult Validate([FromBody] RuleName trade)
         {
             // TODO: check data valid and save to db, after saving return RuleName list
             return View("ruleName/add");

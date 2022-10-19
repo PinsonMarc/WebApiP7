@@ -1,7 +1,14 @@
-namespace Dot.Net.WebApi.Controllers.Domain
+using System;
+
+namespace Dot.Net.WebApi.ControllersDomain
 {
-    public class Rating
-    {
-        // TODO: Map columns in data table RATING with corresponding fields
+    public class Ratin
+    { 
+        public int Id { get; set; }
+        public string MoodysRating { get; set; }
+        public string SandPRating { get; set; }
+        public string FitchRating { get; set; }
+        public int OrderNumber { get; set; }
     }
 }
+    
