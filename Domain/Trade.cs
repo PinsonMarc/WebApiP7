@@ -19,7 +19,7 @@ namespace Dot.Net.WebApi.Domain
         public string Book {get; set;}
         public string CreationName {get; set;}
         public DateTime CreationDate {get; set;}
-        public String RevisionName {get; set;}
+        public string RevisionName {get; set;}
         public DateTime RevisionDate {get; set;}
         public string DealName {get; set;}
         public string DealType {get; set;}

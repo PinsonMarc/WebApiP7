@@ -1,8 +1,8 @@
 using System;
 
-namespace Dot.Net.WebApi.ControllersDomain
+namespace Dot.Net.WebApi.Controllers.Domain
 {
-    public class Ratin
+    public class Rating
     { 
         public int Id { get; set; }
         public string MoodysRating { get; set; }

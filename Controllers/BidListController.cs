@@ -6,7 +6,7 @@ namespace Dot.Net.WebApi.Controllers
     [Route("[controller]")]
     public class BidListController : Controller
     {
-        [HttpGet("/")]
+        [HttpGet("/bidList")]
         public IActionResult Home()
         {
             return View("Home");

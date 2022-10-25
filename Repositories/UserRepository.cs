@@ -1,26 +1,28 @@
+using Dot.Net.WebApi.Data;
 using Dot.Net.WebApi.Domain;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
 
 namespace Dot.Net.WebApi.Repositories
 {
     public class UserRepository
     {
-        public LocalDbContext DbContext { get; }
+        public ApplicationDbContext _context { get; }
 
-        public UserRepository(LocalDbContext dbContext)
+        public UserRepository(ApplicationDbContext dbContext)
         {
-            DbContext = dbContext;
+            _context = dbContext;
         }
 
-        public User FindByUserName(string userName)
+        public IdentityUser FindByUserName(string userName)
         {
-            return DbContext.Users.Where(user => user.UserName == userName)
+            return _context.Users.Where(user => user.UserName == userName)
                                   .FirstOrDefault();
         }
 
-        public User[] FindAll()
+        public IdentityUser[] FindAll()
         {
-            return DbContext.Users.ToArray();
+            return _context.Users.ToArray();
         }
 
         public void Add(User user)

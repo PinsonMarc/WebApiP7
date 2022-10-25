@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Dot.Net.WebApi
 {
@@ -22,16 +23,24 @@ namespace Dot.Net.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //services.AddSwaggerGen();
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"))
             .AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddSwaggerGen()
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<ApplicationDbContext>())
+                context.Database.EnsureCreated();
+
+            app.UseSwagger();
+            //app.UseSwaggerUI();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

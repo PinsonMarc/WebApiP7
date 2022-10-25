@@ -42,7 +42,7 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpPost("/trade/update/{id}")]
-        public IActionResult updateTrade(int id, [FromBody] Trade rating)
+        public IActionResult UpdateTrade(int id, [FromBody] Trade rating)
         {
             // TODO: check required fields, if valid call service to update Trade and return Trade list
             return Redirect("/trade/list");

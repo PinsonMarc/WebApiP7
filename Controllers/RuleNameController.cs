@@ -15,13 +15,13 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpGet("/ruleName/add")]
-        public IActionResult AddRuleName([FromBody] RuleName trade)
+        public IActionResult AddRuleName([FromBody] Rule trade)
         {
             return View("ruleName/add");
         }
 
         [HttpGet("/ruleName/add")]
-        public IActionResult Validate([FromBody] RuleName trade)
+        public IActionResult Validate([FromBody] Rule trade)
         {
             // TODO: check data valid and save to db, after saving return RuleName list
             return View("ruleName/add");
@@ -35,7 +35,7 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         [HttpPost("/ruleName/update/{id}")]
-        public IActionResult updateRuleName(int id, [FromBody] RuleName rating)
+        public IActionResult updateRuleName(int id, [FromBody] Rule rating)
         {
             // TODO: check required fields, if valid call service to update RuleName and return RuleName list
             return Redirect("/ruleName/list");
