@@ -1,6 +1,6 @@
 using System;
 
-namespace Dot.Net.WebApi.Controllers.Domain
+namespace Dot.Net.PoseidonApi.Controllers.Domain
 {
     public class Rating
     { 

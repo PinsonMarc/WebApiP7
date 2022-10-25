@@ -1,6 +1,6 @@
 using System;
 
-namespace Dot.Net.WebApi.Controllers
+namespace Dot.Net.PoseidonApi.Controllers
 {
     public class Rule
     {

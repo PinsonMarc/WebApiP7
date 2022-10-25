@@ -1,8 +1,8 @@
-using Dot.Net.WebApi.Domain;
-using Dot.Net.WebApi.Repositories;
+using Dot.Net.PoseidonApi.Domain;
+using Dot.Net.PoseidonApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dot.Net.WebApi.Controllers
+namespace Dot.Net.PoseidonApi.Controllers
 {
     [Route("[controller]")]
     public class LoginController : Controller

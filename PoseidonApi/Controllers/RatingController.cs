@@ -1,7 +1,7 @@
-using Dot.Net.WebApi.Controllers.Domain;
+using Dot.Net.PoseidonApi.Controllers.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dot.Net.WebApi.Controllers
+namespace Dot.Net.PoseidonApi.Controllers
 {
     [Route("[controller]")]
     public class RatingController : Controller

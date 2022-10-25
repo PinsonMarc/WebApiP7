@@ -1,6 +1,6 @@
 using System;
 
-namespace Dot.Net.WebApi.Domain
+namespace Dot.Net.PoseidonApi.Domain
 {
     public class BidList
     {
@@ -19,7 +19,7 @@ namespace Dot.Net.WebApi.Domain
         public string Trader          { get; set; }
         public string Book            { get; set; }
         public string CreationName    { get; set; }
-        public DateTime CreationDate  { get; set; } 
+        public DateTime CreationDate { get; set; } = DateTime.Now;
         public string RevisionName    { get; set; }
         public DateTime RevisionDate  { get; set; }
         public string DealName        { get; set; }

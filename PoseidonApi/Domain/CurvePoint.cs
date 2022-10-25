@@ -1,6 +1,6 @@
 using System;
 
-namespace Dot.Net.WebApi.Domain
+namespace Dot.Net.PoseidonApi.Domain
 {
     public class CurvePoint
     {

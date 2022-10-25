@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Dot.Net.WebApi
+namespace Dot.Net.PoseidonApi
 {
     public class Program
     {

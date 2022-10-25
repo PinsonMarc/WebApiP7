@@ -1,7 +1,7 @@
-using Dot.Net.WebApi.Domain;
+using Dot.Net.PoseidonApi.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dot.Net.WebApi.Controllers
+namespace Dot.Net.PoseidonApi.Controllers
 {
     [Route("[controller]")]
     public class CurveController : Controller

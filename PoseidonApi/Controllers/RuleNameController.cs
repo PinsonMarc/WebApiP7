@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dot.Net.WebApi.Controllers
+namespace Dot.Net.PoseidonApi.Controllers
 {
     [Route("[controller]")]
     public class RuleNameController : Controller

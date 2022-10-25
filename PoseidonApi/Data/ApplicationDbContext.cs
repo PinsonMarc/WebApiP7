@@ -1,11 +1,11 @@
-using Dot.Net.WebApi.Controllers;
-using Dot.Net.WebApi.Controllers.Domain;
-using Dot.Net.WebApi.Domain;
+using Dot.Net.PoseidonApi.Controllers;
+using Dot.Net.PoseidonApi.Controllers.Domain;
+using Dot.Net.PoseidonApi.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dot.Net.WebApi.Data
+namespace Dot.Net.PoseidonApi.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {

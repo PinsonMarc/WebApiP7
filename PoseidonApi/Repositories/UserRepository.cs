@@ -1,9 +1,9 @@
-using Dot.Net.WebApi.Data;
-using Dot.Net.WebApi.Domain;
+using Dot.Net.PoseidonApi.Data;
+using Dot.Net.PoseidonApi.Domain;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 
-namespace Dot.Net.WebApi.Repositories
+namespace Dot.Net.PoseidonApi.Repositories
 {
     public class UserRepository
     {

@@ -1,4 +1,4 @@
-using Dot.Net.WebApi.Data;
+using Dot.Net.PoseidonApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Dot.Net.WebApi
+namespace Dot.Net.PoseidonApi
 {
     public class Startup
     {
