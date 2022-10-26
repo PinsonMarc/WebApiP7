@@ -1,13 +1,13 @@
-using Dot.Net.PoseidonApi.Data;
-using Dot.Net.PoseidonApi.Domain;
+using Dot.Net.PoseidonApi.Entities;
 using Microsoft.AspNetCore.Identity;
+using PoseidonApi.Model;
 using System.Linq;
 
 namespace Dot.Net.PoseidonApi.Repositories
 {
     public class UserRepository
     {
-        public ApplicationDbContext _context { get; }
+        protected ApplicationDbContext _context { get; }
 
         public UserRepository(ApplicationDbContext dbContext)
         {
@@ -25,11 +25,11 @@ namespace Dot.Net.PoseidonApi.Repositories
             return _context.Users.ToArray();
         }
 
-        public void Add(User user)
+        public void Add(UserDTO user)
         {
         }
 
-        public User FindById(int id)
+        public UserDTO FindById(int id)
         {
             return null;
         }

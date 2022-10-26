@@ -1,4 +1,4 @@
-using Dot.Net.PoseidonApi.Data;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Swashbuckle.AspNetCore.Swagger;
+using PoseidonApi.Model;
+using PoseidonApi.Repositories;
+using TheCarHub.Models;
 
 namespace Dot.Net.PoseidonApi
 {
@@ -23,13 +25,20 @@ namespace Dot.Net.PoseidonApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddSwaggerGen();
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"))
             .AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddSwaggerGen()
+
+            services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +49,8 @@ namespace Dot.Net.PoseidonApi
                 context.Database.EnsureCreated();
 
             app.UseSwagger();
-            //app.UseSwaggerUI();
+            app.UseSwaggerUI();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

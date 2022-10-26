@@ -1,8 +1,9 @@
+using Dot.Net.PoseidonApi.Entities;
 using System;
 
 namespace Dot.Net.PoseidonApi.Controllers.Domain
 {
-    public class Rating
+    public class RatingDTO : APIEntityDTO
     { 
         public int Id { get; set; }
         public string MoodysRating { get; set; }

@@ -1,4 +1,4 @@
-using Dot.Net.PoseidonApi.Domain;
+using Dot.Net.PoseidonApi.Entities;
 using Dot.Net.PoseidonApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,13 +22,13 @@ namespace Dot.Net.PoseidonApi.Controllers
         }
 
         [HttpGet("/user/add")]
-        public IActionResult AddUser([FromBody] User user)
+        public IActionResult AddUser([FromBody] UserDTO user)
         {
             return View("user/add");
         }
 
         [HttpGet("/user/validate")]
-        public IActionResult Validate([FromBody] User user)
+        public IActionResult Validate([FromBody] UserDTO user)
         {
             if (!ModelState.IsValid)
             {
@@ -43,7 +43,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [HttpGet("/user/update/{id}")]
         public IActionResult ShowUpdateForm(int id)
         {
-            User user = _userRepository.FindById(id);
+            UserDTO user = _userRepository.FindById(id);
 
             if (user == null)
                 throw new ArgumentException("Invalid user Id:" + id);
@@ -52,7 +52,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         }
 
         [HttpPost("/user/update/{id}")]
-        public IActionResult updateUser(int id, [FromBody] User user)
+        public IActionResult updateUser(int id, [FromBody] UserDTO user)
         {
             // TODO: check required fields, if valid call service to update Trade and return Trade list
             return Redirect("/trade/list");
@@ -61,7 +61,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [HttpDelete("/user/{id}")]
         public IActionResult DeleteUser(int id)
         {
-            User user = _userRepository.FindById(id);
+            UserDTO user = _userRepository.FindById(id);
 
             if (user == null)
                 throw new ArgumentException("Invalid user Id:" + id);

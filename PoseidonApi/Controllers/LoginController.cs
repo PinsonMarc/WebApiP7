@@ -1,4 +1,4 @@
-using Dot.Net.PoseidonApi.Domain;
+using Dot.Net.PoseidonApi.Entities;
 using Dot.Net.PoseidonApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 

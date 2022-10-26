@@ -1,8 +1,8 @@
 using System;
 
-namespace Dot.Net.PoseidonApi.Domain
+namespace Dot.Net.PoseidonApi.Entities
 {
-    public class BidList
+    public class BidListDTO : APIEntityDTO
     {
         // TODO: Map columns in data table BIDLIST with corresponding fields
         public int Id { get; set; }

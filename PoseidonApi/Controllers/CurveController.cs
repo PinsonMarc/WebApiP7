@@ -1,4 +1,4 @@
-using Dot.Net.PoseidonApi.Domain;
+using Dot.Net.PoseidonApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dot.Net.PoseidonApi.Controllers

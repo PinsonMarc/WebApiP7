@@ -1,4 +1,4 @@
-namespace Dot.Net.PoseidonApi.Domain
+namespace Dot.Net.PoseidonApi.Entities
 {
     public class User
     {

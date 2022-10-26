@@ -1,8 +1,8 @@
 using System;
 
-namespace Dot.Net.PoseidonApi.Domain
+namespace Dot.Net.PoseidonApi.Entities
 {
-    public class CurvePoint
+    public class CurvePointDTO : APIEntityDTO
     {
         public int Id                { get; set; }
         public int CurveId           { get; set; }

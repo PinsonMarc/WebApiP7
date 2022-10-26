@@ -1,8 +1,8 @@
 using System;
 
-namespace Dot.Net.PoseidonApi.Domain
+namespace Dot.Net.PoseidonApi.Entities
 {
-    public class Trade
+    public class TradeDTO : APIEntityDTO
     {
         public int Id { get; set; }
         public string Account {get; set;}

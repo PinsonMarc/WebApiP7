@@ -1,8 +1,9 @@
+using Dot.Net.PoseidonApi.Entities;
 using System;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
-    public class Rule
+    public class RuleDTO : APIEntityDTO
     {
         public int Id { get; set; }
         public string Name { get;set;}
