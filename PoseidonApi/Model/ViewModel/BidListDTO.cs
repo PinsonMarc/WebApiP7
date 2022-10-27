@@ -1,3 +1,4 @@
+using FluentValidation;
 using System;
 
 namespace Dot.Net.PoseidonApi.Entities
@@ -5,7 +6,7 @@ namespace Dot.Net.PoseidonApi.Entities
     public class BidListDTO : APIEntityDTO
     {
         // TODO: Map columns in data table BIDLIST with corresponding fields
-        public int Id { get; set; }
+        public int Id                 { get; set; }
         public string Account         { get; set; }
         public string Type            { get; set; }
         public double AskQuantity     { get; set; }
@@ -19,12 +20,16 @@ namespace Dot.Net.PoseidonApi.Entities
         public string Trader          { get; set; }
         public string Book            { get; set; }
         public string CreationName    { get; set; }
-        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public DateTime CreationDate  { get; set; } = DateTime.Now;
         public string RevisionName    { get; set; }
         public DateTime RevisionDate  { get; set; }
         public string DealName        { get; set; }
         public string DealType        { get; set; }
         public string SourceListId    { get; set; }
         public string Side            { get; set; }            
+    }
+    public class BidListValidator : AbstractValidator<BidListDTO>
+    {
+
     }
 }

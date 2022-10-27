@@ -12,15 +12,14 @@ using System.Runtime.ConstrainedExecution;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
-    //[Route("[controller]")]
     public abstract class EntityController<Entity, DTO> : ControllerBase 
         where Entity : APIEntity 
         where DTO : APIEntityDTO
     {
-        protected readonly EntityRepository<Entity> _repo;
+        protected readonly IEntityRepository<Entity> _repo;
         protected readonly IMapper _mapper;
 
-        public EntityController(EntityRepository<Entity> repo, IMapper mapper)
+        public EntityController(IEntityRepository<Entity> repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
@@ -29,6 +28,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         // TODO: Inject Curve Point service
 
         [HttpGet("[controller]/list")]
+        [HttpGet("[controller]")]
         public async Task<ActionResult<IEnumerable<DTO>>> List()
         {
             try
@@ -53,7 +53,7 @@ namespace Dot.Net.PoseidonApi.Controllers
                 Entity entity = _mapper.Map<DTO, Entity>(dto);
 
                 await _repo.AddAsync(entity);
-                return Redirect("[controller]/list");
+                return RedirectToAction("list");
             }
             else
             {
@@ -72,7 +72,7 @@ namespace Dot.Net.PoseidonApi.Controllers
                 entity = _mapper.Map<DTO, Entity>(dto);
                 entity.Id = id;
                 await _repo.UpdateAsync(entity);
-                return Redirect("[controller]/list");
+                return RedirectToAction("list");
             }
             else
             {
@@ -90,7 +90,7 @@ namespace Dot.Net.PoseidonApi.Controllers
 
                 await _repo.DeleteAsync(entity);
 
-                return Redirect("[controller]/list");
+                return RedirectToAction("list");
 
             }
             catch (Exception ex)

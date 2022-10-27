@@ -1,3 +1,4 @@
+using FluentValidation;
 using System;
 
 namespace Dot.Net.PoseidonApi.Entities
@@ -25,5 +26,11 @@ namespace Dot.Net.PoseidonApi.Entities
         public string DealType {get; set;}
         public string SourceListId {get; set;}
         public string Side {get; set;}
+    }
+
+    public class TradeValidator : AbstractValidator<TradeDTO>
+    {
+
+
     }
 }

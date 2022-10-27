@@ -1,3 +1,4 @@
+using FluentValidation;
 using System;
 
 namespace Dot.Net.PoseidonApi.Entities
@@ -10,5 +11,9 @@ namespace Dot.Net.PoseidonApi.Entities
         public double Term           { get; set; }
         public double Value          { get; set; }  
         public DateTime CreationDate { get; set; }
+    }
+    public class CurvePointValidator : AbstractValidator<CurvePointDTO>
+    {
+
     }
 }

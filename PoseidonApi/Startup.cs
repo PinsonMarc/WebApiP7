@@ -37,6 +37,8 @@ namespace Dot.Net.PoseidonApi
             {
                 mc.AddProfile(new MappingProfile());
             });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddSwaggerGen();
         }

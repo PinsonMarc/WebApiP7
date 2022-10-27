@@ -5,10 +5,9 @@ using PoseidonApi.Repositories;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
-    [Route("[controller]")]
     public class RuleController : EntityController<Rule, RuleDTO>
     {
-        public RuleController(EntityRepository<Rule> repo, IMapper mapper) : base(repo, mapper)
+        public RuleController(IEntityRepository<Rule> repo, IMapper mapper) : base(repo, mapper)
         {
         }
     }

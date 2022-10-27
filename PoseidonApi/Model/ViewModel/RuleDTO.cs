@@ -1,4 +1,5 @@
 using Dot.Net.PoseidonApi.Entities;
+using FluentValidation;
 using System;
 
 namespace Dot.Net.PoseidonApi.Controllers
@@ -12,5 +13,10 @@ namespace Dot.Net.PoseidonApi.Controllers
         public string Template {get;set;}
         public string SqlStr {get;set;}
         public string SqlPart {get;set;}
+    }
+
+    public class RuleValidator : AbstractValidator<RuleDTO>
+    {
+
     }
 }
