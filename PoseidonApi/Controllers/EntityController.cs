@@ -5,7 +5,10 @@ using PoseidonApi.Repositories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net;
 using System.Threading.Tasks;
+using System.Runtime.ConstrainedExecution;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
@@ -26,31 +29,74 @@ namespace Dot.Net.PoseidonApi.Controllers
         // TODO: Inject Curve Point service
 
         [HttpGet("[controller]/list")]
-        public ActionResult<IEnumerable<DTO>> List()
+        public async Task<ActionResult<IEnumerable<DTO>>> List()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var res = await _repo.FindAllAsync();
+
+                DTO[] list = _mapper.Map<Entity[], DTO[]>(res);
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex); 
+            }
         }
 
 
         [HttpGet("[controller]/add")]
-        public IActionResult Add([FromBody] DTO dto)
+        public async Task<IActionResult> Add([FromBody] DTO dto)
         {
-            return Ok("curvePoint/add");
+            if (ModelState.IsValid)
+            {
+                Entity entity = _mapper.Map<DTO, Entity>(dto);
+
+                await _repo.AddAsync(entity);
+                return Redirect("[controller]/list");
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         [HttpPost("[controller]/update/{id}")]
-        public IActionResult Update(int id, [FromBody] DTO dto)
+        public async Task<IActionResult> Update(int id, [FromBody] DTO dto)
         {
-            // TODO: check required fields, if valid call service to update Curve and return Curve list
-            return Redirect("[controller]/list");
+            Entity entity = await _repo.GetByIdAsync(id);
+            if (entity == null) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                entity = _mapper.Map<DTO, Entity>(dto);
+                entity.Id = id;
+                await _repo.UpdateAsync(entity);
+                return Redirect("[controller]/list");
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         [HttpDelete("[controller]")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            // TODO: Find Curve by Id and delete the Curve, return to Curve list
+            try
+            {
+                Entity entity = await _repo.GetByIdAsync(id);
+                if (entity == null) return NotFound();
 
-            return Redirect("[controller]/list");
+                await _repo.DeleteAsync(entity);
+
+                return Redirect("[controller]/list");
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

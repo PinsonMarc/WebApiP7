@@ -21,7 +21,6 @@ namespace PoseidonApi.Repositories
             _entities = dbContext.Set<T>();
         }
 
-
         public async Task<T[]> FindAllAsync()
         {
             return await _entities.ToArrayAsync();
@@ -42,6 +41,7 @@ namespace PoseidonApi.Repositories
             _entities.Remove(entity);
             await _context.SaveChangesAsync();
         }
+
         public async Task UpdateAsync(T entity)
         {
             _entities.Update(entity);   
