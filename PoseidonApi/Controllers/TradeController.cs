@@ -1,52 +1,15 @@
+using AutoMapper;
 using Dot.Net.PoseidonApi.Entities;
 using Microsoft.AspNetCore.Mvc;
+using PoseidonApi.Repositories;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
     [Route("[controller]")]
-    public class TradeController : Controller
+    public class TradeController : EntityController<Trade, TradeDTO>
     {
-        // TODO: Inject Trade service
-
-        [HttpGet("/trade/list")]
-        public IActionResult Home()
+        public TradeController(EntityRepository<Trade> repo, IMapper mapper) : base(repo, mapper)
         {
-            // TODO: find all Trade, add to model
-            return View("trade/list");
-        }
-
-        [HttpGet("/trade/add")]
-        public IActionResult AddTrade([FromBody] Trade trade)
-        {
-            return View("trade/add");
-        }
-
-        [HttpGet("/trade/add")]
-        public IActionResult Validate([FromBody] Trade trade)
-        {
-            // TODO: check data valid and save to db, after saving return Trade list
-            return View("trade/add");
-        }
-
-        [HttpGet("/trade/update/{id}")]
-        public IActionResult ShowUpdateForm(int id)
-        {
-            // TODO: get Trade by Id and to model then show to the form
-            return View("trade/update");
-        }
-
-        [HttpPost("/trade/update/{id}")]
-        public IActionResult UpdateTrade(int id, [FromBody] Trade trade)
-        {
-            // TODO: check required fields, if valid call service to update Trade and return Trade list
-            return Redirect("/trade/list");
-        }
-
-        [HttpDelete("/trade/{id}")]
-        public IActionResult DeleteTrade(int id)
-        {
-            // TODO: Find Trade by Id and delete the Trade, return to Trade list
-            return Redirect("/trade/list");
         }
     }
 }

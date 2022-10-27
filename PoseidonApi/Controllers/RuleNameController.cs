@@ -1,51 +1,15 @@
+using AutoMapper;
+using Dot.Net.PoseidonApi.Entities;
 using Microsoft.AspNetCore.Mvc;
+using PoseidonApi.Repositories;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
     [Route("[controller]")]
-    public class RuleNameController : Controller
+    public class RuleController : EntityController<Rule, RuleDTO>
     {
-        // TODO: Inject RuleName service
-
-        [HttpGet("/ruleName/list")]
-        public IActionResult Home()
+        public RuleController(EntityRepository<Rule> repo, IMapper mapper) : base(repo, mapper)
         {
-            // TODO: find all RuleName, add to model
-            return View("ruleName/list");
-        }
-
-        [HttpGet("/ruleName/add")]
-        public IActionResult AddRuleName([FromBody] Rule trade)
-        {
-            return View("ruleName/add");
-        }
-
-        [HttpGet("/ruleName/add")]
-        public IActionResult Validate([FromBody] Rule trade)
-        {
-            // TODO: check data valid and save to db, after saving return RuleName list
-            return View("ruleName/add");
-        }
-
-        [HttpGet("/ruleName/update/{id}")]
-        public IActionResult ShowUpdateForm(int id)
-        {
-            // TODO: get RuleName by Id and to model then show to the form
-            return View("ruleName/update");
-        }
-
-        [HttpPost("/ruleName/update/{id}")]
-        public IActionResult updateRuleName(int id, [FromBody] Rule rating)
-        {
-            // TODO: check required fields, if valid call service to update RuleName and return RuleName list
-            return Redirect("/ruleName/list");
-        }
-
-        [HttpDelete("/ruleName/{id}")]
-        public IActionResult DeleteRuleName(int id)
-        {
-            // TODO: Find RuleName by Id and delete the RuleName, return to Rule list
-            return Redirect("/ruleName/list");
         }
     }
 }
