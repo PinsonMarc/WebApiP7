@@ -1,4 +1,8 @@
 using AutoMapper;
+using Dot.Net.PoseidonApi.Controllers;
+using Dot.Net.PoseidonApi.Controllers.Domain;
+using Dot.Net.PoseidonApi.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PoseidonApi.Model;
 using PoseidonApi.Repositories;
+using System;
 using TheCarHub.Models;
 
 namespace Dot.Net.PoseidonApi
@@ -26,21 +31,33 @@ namespace Dot.Net.PoseidonApi
         {
             services.AddControllers();
 
+            //DB
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"))
             .AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //Repos
             services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
 
+            //autoMapper
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-
+            
+            //Swagger
             services.AddSwaggerGen();
+
+            //FluentValidation
+            services.AddScoped<IValidator<BidListDTO>, BidListValidator>();
+            services.AddScoped<IValidator<CurvePointDTO>, CurvePointValidator>();
+            services.AddScoped<IValidator<RatingDTO>, RatingValidator>();
+            services.AddScoped<IValidator<RuleDTO>, RuleValidator>();
+            services.AddScoped<IValidator<TradeDTO>, TradeValidator>();
+            services.AddScoped<IValidator<UserDTO>, UserValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,7 @@
 using Dot.Net.PoseidonApi.Entities;
 using FluentValidation;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace Dot.Net.PoseidonApi.Controllers
@@ -17,6 +19,18 @@ namespace Dot.Net.PoseidonApi.Controllers
 
     public class RuleValidator : AbstractValidator<RuleDTO>
     {
+        public RuleValidator()
+        {
+            RuleFor(x => x.SqlStr)
+                .NotEmpty();
+                //.Must(MustBeSafeJson);
 
+        }
+
+        //private bool MustBeSafeJson(string arg, bool res)
+        //{
+            //var jsonString = JsonConvert.SerializeObject(arg);
+            //return RunValidatingRules(jsonString);
+        //}
     }
 }

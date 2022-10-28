@@ -13,16 +13,16 @@ namespace Dot.Net.PoseidonApi.Entities
         public double Bid             { get; set; }
         public double Ask             { get; set; }
         public string Benchmark       { get; set; }
-        public DateTime BidListDate   { get; set; }
+        public DateTime? BidListDate   { get; set; }
         public string Commentary      { get; set; }
         public string Security        { get; set; }
         public string Status          { get; set; }
         public string Trader          { get; set; }
         public string Book            { get; set; }
         public string CreationName    { get; set; }
-        public DateTime CreationDate  { get; set; } = DateTime.Now;
+        public DateTime? CreationDate  { get; set; } = DateTime.Now;
         public string RevisionName    { get; set; }
-        public DateTime RevisionDate  { get; set; }
+        public DateTime? RevisionDate  { get; set; }
         public string DealName        { get; set; }
         public string DealType        { get; set; }
         public string SourceListId    { get; set; }
@@ -30,6 +30,14 @@ namespace Dot.Net.PoseidonApi.Entities
     }
     public class BidListValidator : AbstractValidator<BidListDTO>
     {
-
+        public BidListValidator()
+        {
+            //RuleFor(x => x.Value).NotNull();
+            //RuleFor(x => x.CurveId).NotNull();
+            //RuleFor(x => x.SourceListId).NotNull();
+            //RuleFor(x => x.CreationDate).LessThanOrEqualTo(DateTime?.Now);
+            //RuleFor(x => x.RevisionDate).GreaterThanOrEqualTo(r => r.CreationDate ?? DateTime?.MinValue)
+            //    .WithMessage("Date To must be after Date From");
+        }
     }
 }

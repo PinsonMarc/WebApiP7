@@ -9,6 +9,6 @@ namespace Dot.Net.PoseidonApi.Entities
 
     public class UserValidator : AbstractValidator<UserDTO>
     {
-        public string UserName { get; set; }
+
     }
 }

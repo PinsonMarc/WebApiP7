@@ -45,7 +45,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         }
 
 
-        [HttpGet("[controller]/add")]
+        [HttpPost("[controller]/add")]
         public async Task<IActionResult> Add([FromBody] DTO dto)
         {
             if (ModelState.IsValid)
@@ -80,7 +80,7 @@ namespace Dot.Net.PoseidonApi.Controllers
             }
         }
 
-        [HttpDelete("[controller]")]
+        [HttpDelete("[controller]/delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
