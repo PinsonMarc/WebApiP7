@@ -28,6 +28,7 @@ namespace Dot.Net.PoseidonApi.Entities
         public string SourceListId    { get; set; }
         public string Side            { get; set; }            
     }
+
     public class BidListValidator : AbstractValidator<BidListDTO>
     {
         public BidListValidator()

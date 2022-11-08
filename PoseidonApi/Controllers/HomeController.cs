@@ -8,7 +8,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [HttpGet("/")]
         public IActionResult Home()
         {
-            return Ok("Home");
+            return Ok("Created by Marc Pinson using asp.net core");
         }
 
         [HttpGet("/Admin/Home")]
