@@ -8,7 +8,6 @@ namespace Dot.Net.PoseidonApi.Controllers
 {
     public class RuleDTO : APIEntityDTO
     {
-        public int Id { get; set; }
         public string Name { get;set;}
         public string Description {get;set;}
         public string Json {get;set;}
@@ -21,16 +20,7 @@ namespace Dot.Net.PoseidonApi.Controllers
     {
         public RuleValidator()
         {
-            RuleFor(x => x.SqlStr)
-                .NotEmpty();
-                //.Must(MustBeSafeJson);
-
+            RuleFor(x => x.Name).MaximumLength(256);
         }
-
-        //private bool MustBeSafeJson(string arg, bool res)
-        //{
-            //var jsonString = JsonConvert.SerializeObject(arg);
-            //return RunValidatingRules(jsonString);
-        //}
     }
 }

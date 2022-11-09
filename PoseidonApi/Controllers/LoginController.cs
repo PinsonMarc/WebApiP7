@@ -33,26 +33,5 @@ namespace Dot.Net.PoseidonApi.Controllers
 
             return View(new UnauthorizedObjectResult(errorMessage));
         }
-
-        [HttpGet("/trade/update/{id}")]
-        public IActionResult ShowUpdateForm(int id)
-        {
-            // TODO: get Trade by Id and to model then show to the form
-            return View("trade/update");
-        }
-
-        [HttpPost("/trade/update/{id}")]
-        public IActionResult UpdateTrade(int id, [FromBody] Trade rating)
-        {
-            // TODO: check required fields, if valid call service to update Trade and return Trade list
-            return Redirect("/trade/list");
-        }
-
-        [HttpDelete("/trade/{id}")]
-        public IActionResult DeleteTrade(int id)
-        {
-            // TODO: Find Trade by Id and delete the Trade, return to Trade list
-            return Redirect("/trade/list");
-        }
     }
 }

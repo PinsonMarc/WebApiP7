@@ -5,6 +5,7 @@ namespace Dot.Net.PoseidonApi.Entities
     {
         public string Account         { get; set; }
         public string Type            { get; set; }
+        public double BidQuantity     { get; set; }
         public double AskQuantity     { get; set; }
         public double Bid             { get; set; }
         public double Ask             { get; set; }

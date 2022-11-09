@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
 using System.Runtime.ConstrainedExecution;
+using Microsoft.AspNetCore.Http;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
@@ -27,6 +28,8 @@ namespace Dot.Net.PoseidonApi.Controllers
 
         // TODO: Inject Curve Point service
 
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("[controller]/list")]
         [HttpGet("[controller]")]
         public async Task<ActionResult<IEnumerable<DTO>>> List()
@@ -44,7 +47,8 @@ namespace Dot.Net.PoseidonApi.Controllers
             }
         }
 
-
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("[controller]/add")]
         public async Task<IActionResult> Add([FromBody] DTO dto)
         {
@@ -61,6 +65,22 @@ namespace Dot.Net.PoseidonApi.Controllers
             }
         }
 
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("[controller]/update/{id}")]
+        public async Task<IActionResult> Update(int id)
+        {
+            Entity entity = await _repo.GetByIdAsync(id);
+            if (entity == null) return NotFound();
+
+            DTO dto = _mapper.Map<Entity, DTO>(entity);
+            
+            return Ok(dto);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPost("[controller]/update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] DTO dto)
         {
@@ -80,6 +100,9 @@ namespace Dot.Net.PoseidonApi.Controllers
             }
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("[controller]/delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {

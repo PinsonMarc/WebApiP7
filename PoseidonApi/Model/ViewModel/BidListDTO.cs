@@ -1,15 +1,15 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 
 namespace Dot.Net.PoseidonApi.Entities
 {
     public class BidListDTO : APIEntityDTO
     {
-        // TODO: Map columns in data table BIDLIST with corresponding fields
-        public int Id                 { get; set; }
         public string Account         { get; set; }
         public string Type            { get; set; }
         public double AskQuantity     { get; set; }
+        public double BidQuantity     { get; set; }
         public double Bid             { get; set; }
         public double Ask             { get; set; }
         public string Benchmark       { get; set; }
@@ -20,7 +20,7 @@ namespace Dot.Net.PoseidonApi.Entities
         public string Trader          { get; set; }
         public string Book            { get; set; }
         public string CreationName    { get; set; }
-        public DateTime? CreationDate  { get; set; } = DateTime.Now;
+        public DateTime? CreationDate  { get; set; }
         public string RevisionName    { get; set; }
         public DateTime? RevisionDate  { get; set; }
         public string DealName        { get; set; }
@@ -33,12 +33,10 @@ namespace Dot.Net.PoseidonApi.Entities
     {
         public BidListValidator()
         {
-            //RuleFor(x => x.Value).NotNull();
-            //RuleFor(x => x.CurveId).NotNull();
-            //RuleFor(x => x.SourceListId).NotNull();
-            //RuleFor(x => x.CreationDate).LessThanOrEqualTo(DateTime?.Now);
-            //RuleFor(x => x.RevisionDate).GreaterThanOrEqualTo(r => r.CreationDate ?? DateTime?.MinValue)
-            //    .WithMessage("Date To must be after Date From");
+            RuleFor(x => x.Account).NotEmpty();
+            RuleFor(x => x.Type).NotEmpty();
+            RuleFor(x => x.AskQuantity).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.BidQuantity).GreaterThanOrEqualTo(0);
         }
     }
 }
