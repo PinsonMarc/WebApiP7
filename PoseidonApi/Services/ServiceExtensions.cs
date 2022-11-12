@@ -19,7 +19,7 @@ using System.Reflection;
 using System.Text;
 using TheCarHub.Models;
 
-namespace Dot.Net.PoseidonApi
+namespace PoseidonApi.Services
 {
     public static class ServiceExtensions
     {
@@ -87,7 +87,7 @@ namespace Dot.Net.PoseidonApi
                     }
                 });
             });
-            
+
         }
 
         public static void ConfigureAutoMapper(this IServiceCollection services)

@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using PoseidonApi.Model;
 using PoseidonApi.Model.Identity;
 using PoseidonApi.Repositories;
+using PoseidonApi.Services;
 using System;
 using System.Text;
 using TheCarHub.Models;
