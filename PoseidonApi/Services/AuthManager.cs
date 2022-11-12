@@ -7,9 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -88,7 +86,8 @@ namespace PoseidonApi.Services
         {
             await _userManager.RemoveAuthenticationTokenAsync(_user, "PoseidonApi", "RefreshToken");
             var newRefreshToken = await _userManager.GenerateUserTokenAsync(_user, "PoseidonApi", "RefreshToken");
-            var result = await _userManager.SetAuthenticationTokenAsync(_user, "PoseidonApi", "RefreshToken", newRefreshToken);
+            await _userManager.SetAuthenticationTokenAsync(_user, "PoseidonApi", "RefreshToken", newRefreshToken);
+
             return newRefreshToken;
         }
 

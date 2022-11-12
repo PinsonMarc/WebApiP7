@@ -1,21 +1,16 @@
 using AutoMapper;
 using Dot.Net.PoseidonApi.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PoseidonApi.Repositories;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net;
 using System.Threading.Tasks;
-using System.Runtime.ConstrainedExecution;
-using Microsoft.AspNetCore.Http;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
-    [Route("[controller]")]
-    public abstract class EntityController<Entity, DTO> : ControllerBase 
-        where Entity : APIEntity 
+    public abstract class EntityController<Entity, DTO> : ControllerBase
+        where Entity : APIEntity
         where DTO : APIEntityDTO
     {
         protected readonly IEntityRepository<Entity> _repo;
@@ -31,8 +26,8 @@ namespace Dot.Net.PoseidonApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("/list")]
-        [HttpGet]
+        [HttpGet("[controller]/list")]
+        [HttpGet("[controller]")]
         public async Task<ActionResult<IEnumerable<DTO>>> List()
         {
             try
@@ -44,13 +39,13 @@ namespace Dot.Net.PoseidonApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex); 
+                return StatusCode(500, ex);
             }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpPost("/add")]
+        [HttpPost("[controller]/add")]
         public async Task<IActionResult> Add([FromBody] DTO dto)
         {
             if (ModelState.IsValid)
@@ -68,21 +63,21 @@ namespace Dot.Net.PoseidonApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("/update/{id}")]
+        [HttpGet("[controller]/update/{id}")]
         public async Task<IActionResult> Update(int id)
         {
             Entity entity = await _repo.GetByIdAsync(id);
             if (entity == null) return NotFound();
 
             DTO dto = _mapper.Map<Entity, DTO>(entity);
-            
+
             return Ok(dto);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPost("/update/{id}")]
+        [HttpPost("[controller]/update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] DTO dto)
         {
             Entity entity = await _repo.GetByIdAsync(id);
@@ -104,7 +99,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpDelete("[delete/{id}")]
+        [HttpDelete("[controller]/delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try

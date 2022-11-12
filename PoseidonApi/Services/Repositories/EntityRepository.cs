@@ -1,10 +1,6 @@
 ﻿using Dot.Net.PoseidonApi.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PoseidonApi.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PoseidonApi.Repositories
@@ -44,7 +40,7 @@ namespace PoseidonApi.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            _entities.Update(entity);   
+            _entities.Update(entity);
             await _context.SaveChangesAsync();
         }
 

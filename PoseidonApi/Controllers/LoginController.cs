@@ -1,8 +1,6 @@
-using AutoMapper;
 using Dot.Net.PoseidonApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using oseidonApi.Controllers;
 using PoseidonApi.Model.Identity;
 using PoseidonApi.Services;
 using System;

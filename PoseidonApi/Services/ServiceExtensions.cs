@@ -4,9 +4,6 @@ using Dot.Net.PoseidonApi.Controllers;
 using Dot.Net.PoseidonApi.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +12,6 @@ using Microsoft.OpenApi.Models;
 using PoseidonApi.Model;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 using TheCarHub.Models;
 

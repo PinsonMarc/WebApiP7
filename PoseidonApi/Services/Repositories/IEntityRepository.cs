@@ -1,9 +1,5 @@
 ﻿using Dot.Net.PoseidonApi.Entities;
-using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System;
 
 namespace PoseidonApi.Repositories
 {
