@@ -76,7 +76,7 @@ namespace PoseidonApi.Services
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
 
-        public async Task<bool> ValidateUser(UserDTO userDTO)
+        public async Task<bool> ValidateUser(UserLoginDTO userDTO)
         {
             _user = await _userManager.FindByNameAsync(userDTO.UserName);
             var validPassword = await _userManager.CheckPasswordAsync(_user, userDTO.Password);

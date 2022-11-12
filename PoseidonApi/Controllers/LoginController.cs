@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace PoseidonApi.Controllers
 {
-    [Route("[controller]")]
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
@@ -21,7 +20,7 @@ namespace PoseidonApi.Controllers
         }
 
         [HttpPost("/login")]
-        public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO userDTO)
         {
             _logger.LogInformation($"Login Attempt for {userDTO.UserName} ");
             if (!ModelState.IsValid)

@@ -37,11 +37,10 @@ namespace PoseidonApi
 
             //Repos
             services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
-
+            services.AddScoped<IAuthManager, AuthManager>();
+            
             services.AddAuthentication();
-            
             services.ConfigureIdentity();
-            
             services.ConfigureJWT(Configuration);
 
             services.ConfigureFluentValidation();

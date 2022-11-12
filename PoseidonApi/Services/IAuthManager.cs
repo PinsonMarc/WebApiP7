@@ -6,7 +6,7 @@ namespace PoseidonApi.Services
 {
     public interface IAuthManager
     {
-        Task<bool> ValidateUser(UserDTO userDTO);
+        Task<bool> ValidateUser(UserLoginDTO userDTO);
         Task<string> CreateToken();
         Task<string> CreateRefreshToken();
         Task<TokenRequest> VerifyRefreshToken(TokenRequest request);
