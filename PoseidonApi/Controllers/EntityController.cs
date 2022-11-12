@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Dot.Net.PoseidonApi.Controllers
 {
+    [Route("[controller]")]
     public abstract class EntityController<Entity, DTO> : ControllerBase 
         where Entity : APIEntity 
         where DTO : APIEntityDTO
@@ -30,8 +31,8 @@ namespace Dot.Net.PoseidonApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("[controller]/list")]
-        [HttpGet("[controller]")]
+        [HttpGet("/list")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<DTO>>> List()
         {
             try
@@ -49,7 +50,7 @@ namespace Dot.Net.PoseidonApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpPost("[controller]/add")]
+        [HttpPost("/add")]
         public async Task<IActionResult> Add([FromBody] DTO dto)
         {
             if (ModelState.IsValid)
@@ -67,7 +68,7 @@ namespace Dot.Net.PoseidonApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("[controller]/update/{id}")]
+        [HttpGet("/update/{id}")]
         public async Task<IActionResult> Update(int id)
         {
             Entity entity = await _repo.GetByIdAsync(id);
@@ -81,7 +82,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPost("[controller]/update/{id}")]
+        [HttpPost("/update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] DTO dto)
         {
             Entity entity = await _repo.GetByIdAsync(id);
@@ -103,7 +104,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpDelete("[controller]/delete/{id}")]
+        [HttpDelete("[delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try

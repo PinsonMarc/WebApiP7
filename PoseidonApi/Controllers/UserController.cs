@@ -1,65 +1,64 @@
+using AutoMapper;
 using Dot.Net.PoseidonApi.Entities;
-using Dot.Net.PoseidonApi.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using PoseidonApi.Model.Identity;
+using PoseidonApi.Services;
 using System;
+using System.Threading.Tasks;
 
-namespace Dot.Net.PoseidonApi.Controllers
+namespace oseidonApi.Controllers
 {
     [Route("[controller]")]
-    public class UserController : Controller
+    [ApiController]
+    public class UserController : ControllerBase
     {
-        private UserRepository _userRepository;
+        private readonly UserManager<ApiUser> _userManager;
+        private readonly ILogger<UserController> _logger;
+        private readonly IMapper _mapper;
 
-        public UserController(UserRepository userRepository)
+        public UserController(UserManager<ApiUser> userManager, ILogger<UserController> logger, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _userManager = userManager;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        [HttpGet("/user/list")]
-        public IActionResult Home()
+        [HttpPost("register")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
-            return View(_userRepository.FindAll());
-        }
-
-        [HttpGet("/user/add")]
-        public IActionResult AddUser([FromBody] UserDTO user)
-        {
-            return View("user/add");
-        }
-
-        [HttpGet("/user/validate")]
-        public IActionResult Validate([FromBody] UserDTO user)
-        {
+            _logger.LogInformation($"Registration Attempt for {userDTO.UserName} ");
             if (!ModelState.IsValid)
             {
-                return Redirect("user/add");
+                return BadRequest(ModelState);
             }
 
-            _userRepository.Add(user);
+            try
+            {
+                var user = _mapper.Map<ApiUser>(userDTO);
+                var result = await _userManager.CreateAsync(user, userDTO.Password);
 
-            return Redirect("user/list");
-        }
-
-        [HttpGet("/user/update/{id}")]
-        public IActionResult ShowUpdateForm(int id)
-        {
-            UserDTO user = _userRepository.FindById(id);
-
-            if (user == null)
-                throw new ArgumentException("Invalid user Id:" + id);
-
-            return View("user/update");
-        }
-
-        [HttpDelete("/user/{id}")]
-        public IActionResult DeleteUser(int id)
-        {
-            UserDTO user = _userRepository.FindById(id);
-
-            if (user == null)
-                throw new ArgumentException("Invalid user Id:" + id);
-
-            return Redirect("/user/list");
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(error.Code, error.Description);
+                    }
+                    return BadRequest(ModelState);
+                }
+                await _userManager.AddToRoleAsync(user, "User");
+                return Accepted();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Register)}");
+                return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
+            }
         }
     }
 }
