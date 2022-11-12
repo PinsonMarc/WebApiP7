@@ -1,6 +1,6 @@
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 
-namespace Dot.Net.PoseidonApi.Controllers
+namespace PoseidonApi.Controllers
 {
     public class Rule : APIEntity
     {

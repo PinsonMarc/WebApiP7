@@ -1,4 +1,4 @@
-﻿using Dot.Net.PoseidonApi.Entities;
+﻿using PoseidonApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using PoseidonApi.Model;
 using System.Threading.Tasks;

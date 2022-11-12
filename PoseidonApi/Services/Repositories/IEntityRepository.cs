@@ -1,4 +1,4 @@
-﻿using Dot.Net.PoseidonApi.Entities;
+﻿using PoseidonApi.Entities;
 using System.Threading.Tasks;
 
 namespace PoseidonApi.Repositories

@@ -1,5 +1,5 @@
 using AutoMapper;
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace oseidonApi.Controllers
+namespace PoseidonApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]

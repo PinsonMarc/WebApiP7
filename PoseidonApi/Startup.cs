@@ -1,4 +1,4 @@
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +10,7 @@ using PoseidonApi.Model;
 using PoseidonApi.Repositories;
 using PoseidonApi.Services;
 
-namespace Dot.Net.PoseidonApi
+namespace PoseidonApi
 {
     public class Startup
     {

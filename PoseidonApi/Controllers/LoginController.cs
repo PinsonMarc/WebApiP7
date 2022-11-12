@@ -1,4 +1,4 @@
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PoseidonApi.Model.Identity;
@@ -6,7 +6,7 @@ using PoseidonApi.Services;
 using System;
 using System.Threading.Tasks;
 
-namespace Dot.Net.PoseidonApi.Controllers
+namespace PoseidonApi.Controllers
 {
     [Route("[controller]")]
     public class LoginController : Controller
@@ -20,7 +20,7 @@ namespace Dot.Net.PoseidonApi.Controllers
             _authManager = authManager;
         }
 
-        [HttpGet("/login")]
+        [HttpPost("/login")]
         public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
         {
             _logger.LogInformation($"Login Attempt for {userDTO.UserName} ");
@@ -45,7 +45,7 @@ namespace Dot.Net.PoseidonApi.Controllers
             }
         }
 
-        [HttpGet("/refreshtoken")]
+        [HttpPost("/refreshtoken")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequest request)
         {
             var tokenRequest = await _authManager.VerifyRefreshToken(request);

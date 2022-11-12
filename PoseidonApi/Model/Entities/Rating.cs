@@ -1,6 +1,6 @@
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 
-namespace Dot.Net.PoseidonApi.Controllers.Domain
+namespace PoseidonApi.Controllers.Domain
 {
     public class Rating : APIEntity
     {

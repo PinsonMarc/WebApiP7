@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Dot.Net.PoseidonApi.Entities
+namespace PoseidonApi.Entities
 {
     public class ApiUser : IdentityUser
     {

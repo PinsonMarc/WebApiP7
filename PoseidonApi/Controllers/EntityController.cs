@@ -1,5 +1,5 @@
 using AutoMapper;
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PoseidonApi.Repositories;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Dot.Net.PoseidonApi.Controllers
+namespace PoseidonApi.Controllers
 {
     public abstract class EntityController<Entity, DTO> : ControllerBase
         where Entity : APIEntity
@@ -77,7 +77,7 @@ namespace Dot.Net.PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPost("[controller]/update/{id}")]
+        [HttpPut("[controller]/update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] DTO dto)
         {
             Entity entity = await _repo.GetByIdAsync(id);

@@ -1,6 +1,6 @@
-using Dot.Net.PoseidonApi.Controllers;
-using Dot.Net.PoseidonApi.Controllers.Domain;
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Controllers;
+using PoseidonApi.Controllers.Domain;
+using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

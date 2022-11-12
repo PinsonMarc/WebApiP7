@@ -1,7 +1,7 @@
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Entities;
 using FluentValidation;
 
-namespace Dot.Net.PoseidonApi.Controllers
+namespace PoseidonApi.Controllers
 {
     public class RuleDTO : APIEntityDTO
     {

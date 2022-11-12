@@ -1,14 +1,13 @@
 using FluentValidation;
 using System;
 
-namespace Dot.Net.PoseidonApi.Entities
+namespace PoseidonApi.Entities
 {
     public class UserDTO : APIEntityDTO
     {
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Fullname { get; set; }
-        public string Role { get; set; }
     }
 
     public class UserValidator : AbstractValidator<UserDTO>

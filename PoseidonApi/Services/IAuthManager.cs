@@ -1,4 +1,4 @@
-﻿using Dot.Net.PoseidonApi.Entities;
+﻿using PoseidonApi.Entities;
 using PoseidonApi.Model.Identity;
 using System.Threading.Tasks;
 

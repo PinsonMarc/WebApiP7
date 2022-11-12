@@ -1,4 +1,4 @@
-﻿using Dot.Net.PoseidonApi.Entities;
+﻿using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -69,7 +69,8 @@ namespace PoseidonApi.Services
 
         private SigningCredentials GetSigningCredentials()
         {
-            var key = Environment.GetEnvironmentVariable("KEY");
+            var jwtSettings = _configuration.GetSection("Jwt");
+            var key = jwtSettings.GetSection("Key").Value;
             var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);

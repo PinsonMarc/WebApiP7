@@ -1,6 +1,6 @@
 using System;
 
-namespace Dot.Net.PoseidonApi.Entities
+namespace PoseidonApi.Entities
 {
     public class Trade : APIEntity
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Dot.Net.PoseidonApi.Controllers.Domain;
-using Dot.Net.PoseidonApi.Controllers;
-using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Controllers.Domain;
+using PoseidonApi.Controllers;
+using PoseidonApi.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -21,7 +21,7 @@ namespace PoseidonApi.Services
     {
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            var builder = services.AddIdentityCore<ApiUser>(q => { q.User.RequireUniqueEmail = true; });
+            var builder = services.AddIdentityCore<ApiUser>();
 
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), services);
             builder.AddTokenProvider("PoseidonApi", typeof(DataProtectorTokenProvider<ApiUser>));
@@ -31,7 +31,7 @@ namespace PoseidonApi.Services
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration Configuration)
         {
             var jwtSettings = Configuration.GetSection("Jwt");
-            var key = Environment.GetEnvironmentVariable("KEY");
+            var key = jwtSettings.GetSection("Key").Value;
 
             services.AddAuthentication(o =>
             {

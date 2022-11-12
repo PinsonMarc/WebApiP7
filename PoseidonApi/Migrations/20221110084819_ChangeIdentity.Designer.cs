@@ -21,7 +21,7 @@ namespace PoseidonApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Dot.Net.PoseidonApi.Controllers.Domain.Rating", b =>
+            modelBuilder.Entity("PoseidonApi.Controllers.Domain.Rating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace PoseidonApi.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("Dot.Net.PoseidonApi.Controllers.Rule", b =>
+            modelBuilder.Entity("PoseidonApi.Controllers.Rule", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace PoseidonApi.Migrations
                     b.ToTable("RuleNames");
                 });
 
-            modelBuilder.Entity("Dot.Net.PoseidonApi.Entities.BidList", b =>
+            modelBuilder.Entity("PoseidonApi.Entities.BidList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,7 +150,7 @@ namespace PoseidonApi.Migrations
                     b.ToTable("BidLists");
                 });
 
-            modelBuilder.Entity("Dot.Net.PoseidonApi.Entities.CurvePoint", b =>
+            modelBuilder.Entity("PoseidonApi.Entities.CurvePoint", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,7 +177,7 @@ namespace PoseidonApi.Migrations
                     b.ToTable("CurvePoints");
                 });
 
-            modelBuilder.Entity("Dot.Net.PoseidonApi.Entities.Trade", b =>
+            modelBuilder.Entity("PoseidonApi.Entities.Trade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -249,7 +249,7 @@ namespace PoseidonApi.Migrations
                     b.ToTable("Trades");
                 });
 
-            modelBuilder.Entity("Dot.Net.PoseidonApi.Entities.User", b =>
+            modelBuilder.Entity("PoseidonApi.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -459,7 +459,7 @@ namespace PoseidonApi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Dot.Net.PoseidonApi.Entities.User", null)
+                    b.HasOne("PoseidonApi.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -468,7 +468,7 @@ namespace PoseidonApi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Dot.Net.PoseidonApi.Entities.User", null)
+                    b.HasOne("PoseidonApi.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -483,7 +483,7 @@ namespace PoseidonApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Dot.Net.PoseidonApi.Entities.User", null)
+                    b.HasOne("PoseidonApi.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -492,7 +492,7 @@ namespace PoseidonApi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Dot.Net.PoseidonApi.Entities.User", null)
+                    b.HasOne("PoseidonApi.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
