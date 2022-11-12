@@ -17,10 +17,10 @@ namespace Dot.Net.PoseidonApi.Entities
         {
             RuleFor(x => x.UserName).NotEmpty();
             RuleFor(x => x.Password).NotEmpty().WithMessage("Your password cannot be empty")
-                    .MinimumLength(8).WithMessage("Your password length must be at least 8.")
-                    .Matches(@"[A-Z]+").WithMessage("Your password must contain at least one uppercase letter.")
-                    .Matches(@"[0-9]+").WithMessage("Your password must contain at least one number.")
-                    .Matches(@"[][""!@$%^&*(){}:;<>,.?/+_=|'~\\-]").WithMessage("Your password must contain at least one symbol");
+                .MinimumLength(8).WithMessage("Your password length must be at least 8.")
+                .Matches(@"[A-Z]+").WithMessage("Your password must contain at least one uppercase letter.")
+                .Matches(@"[0-9]+").WithMessage("Your password must contain at least one number.")
+                .Matches(@"[][""!@$%^&*(){}:;<>,.?/+_=|'~\\-]").WithMessage("Your password must contain at least one symbol");
         }
     }
 }

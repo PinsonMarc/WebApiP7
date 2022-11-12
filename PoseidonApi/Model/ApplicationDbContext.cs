@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PoseidonApi.Model
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<ApiUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
