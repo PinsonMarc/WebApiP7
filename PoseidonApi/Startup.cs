@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PoseidonApi.Model;
+using PoseidonApi.Model.Identity;
 using PoseidonApi.Repositories;
 using System;
 using System.Text;
@@ -41,27 +42,21 @@ namespace Dot.Net.PoseidonApi
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllers();
+
             //Repos
             services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
 
-            //autoMapper
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+            services.AddAuthentication();
             
-            //Swagger
-            services.AddSwaggerGen();
+            services.ConfigureIdentity();
+            
+            services.ConfigureJWT(Configuration);
 
-            //FluentValidation
-            services.AddScoped<IValidator<BidListDTO>, BidListValidator>();
-            services.AddScoped<IValidator<CurvePointDTO>, CurvePointValidator>();
-            services.AddScoped<IValidator<RatingDTO>, RatingValidator>();
-            services.AddScoped<IValidator<RuleDTO>, RuleValidator>();
-            services.AddScoped<IValidator<TradeDTO>, TradeValidator>();
-            services.AddScoped<IValidator<UserDTO>, UserValidator>();
+            services.ConfigureFluentValidation();
+
+            services.ConfigureAutoMapper();
+
+            services.ConfigureSwaggerDoc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

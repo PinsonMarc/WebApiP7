@@ -2,6 +2,7 @@
 using Dot.Net.PoseidonApi.Controllers;
 using Dot.Net.PoseidonApi.Controllers.Domain;
 using Dot.Net.PoseidonApi.Entities;
+using PoseidonApi.Model.Identity;
 
 namespace TheCarHub.Models
 {

@@ -4,6 +4,7 @@ using Dot.Net.PoseidonApi.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PoseidonApi.Model.Identity;
 
 namespace PoseidonApi.Model
 {
@@ -22,6 +23,16 @@ namespace PoseidonApi.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole{
+                    Name = "User",
+                    NormalizedName = "USER"
+                },
+                new IdentityRole{
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
+                }
+            );
         }
     }
 }
