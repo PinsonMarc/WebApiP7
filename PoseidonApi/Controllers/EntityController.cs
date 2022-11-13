@@ -6,9 +6,11 @@ using PoseidonApi.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PoseidonApi.Controllers
 {
+    [Authorize]
     public abstract class EntityController<Entity, DTO> : ControllerBase
         where Entity : APIEntity
         where DTO : APIEntityDTO
@@ -21,8 +23,6 @@ namespace PoseidonApi.Controllers
             _repo = repo;
             _mapper = mapper;
         }
-
-        // TODO: Inject Curve Point service
 
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]

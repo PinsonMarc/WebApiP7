@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace PoseidonApi.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<ApiUser> _userManager;
@@ -25,7 +28,7 @@ namespace PoseidonApi.Controllers
         }
 
         [HttpPost("register")]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
@@ -50,12 +53,64 @@ namespace PoseidonApi.Controllers
                     return BadRequest(ModelState);
                 }
                 await _userManager.AddToRoleAsync(user, userDTO.Role);
-                return Accepted();
+                return Ok();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something Went Wrong in the {nameof(Register)}");
                 return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
+            }
+        }
+
+        [HttpDelete("delete")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(string Id)
+        {
+            _logger.LogInformation($"Delete attempt for user : {Id} ");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var result = await _userManager.FindByIdAsync(Id);
+
+                if (result == null) return BadRequest();
+
+                await _userManager.DeleteAsync(result);
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Delete)}");
+                return Problem($"Something Went Wrong in the {nameof(Delete)}", statusCode: 500);
+            }
+        }
+
+        [HttpGet("list")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUserList()
+        {
+            _logger.LogInformation($"Getting user list");
+
+            try
+            {
+                var result = await _userManager.GetUsersInRoleAsync("User");
+                var users = _mapper.Map<IList<ApiUser> , IList<UserDTO>>(result);
+                foreach (var user in users)
+                    user.Role = "User";
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetUserList)}");
+                return Problem($"Something Went Wrong in the {nameof(GetUserList)}", statusCode: 500);
             }
         }
     }
