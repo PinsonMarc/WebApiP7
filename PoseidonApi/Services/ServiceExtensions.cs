@@ -10,10 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PoseidonApi.Model;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using TheCarHub.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace PoseidonApi.Services
 {

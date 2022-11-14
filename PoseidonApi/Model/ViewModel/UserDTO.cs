@@ -21,7 +21,7 @@ namespace PoseidonApi.Entities
     {
         public UserValidator()
         {
-            RuleFor(x => x.UserName).NotEmpty();
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Your username cannot be empty");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Your password cannot be empty")
                 .MinimumLength(8).WithMessage("Your password length must be at least 8.")
                 .Matches(@"[A-Z]+").WithMessage("Your password must contain at least one uppercase letter.")

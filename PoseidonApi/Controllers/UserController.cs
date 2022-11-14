@@ -52,7 +52,7 @@ namespace PoseidonApi.Controllers
                     }
                     return BadRequest(ModelState);
                 }
-                await _userManager.AddToRoleAsync(user, userDTO.Role);
+                await _userManager.AddToRoleAsync(user, "User");
                 return Ok();
             }
             catch (Exception ex)

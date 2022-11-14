@@ -18,9 +18,9 @@ namespace PoseidonApi.Controllers
     {
         protected IEntityRepository<Entity> _repo;
         protected IMapper _mapper;
-        protected ILogger _logger;
+        protected ILogger<EntityController<Entity, DTO>> _logger;
 
-        public EntityController(IEntityRepository<Entity> repo, IMapper mapper, ILogger logger)
+        public EntityController(IEntityRepository<Entity> repo, IMapper mapper, ILogger<EntityController<Entity, DTO>> logger)
         {
             _repo = repo;
             _mapper = mapper;
@@ -42,6 +42,7 @@ namespace PoseidonApi.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(List)}");
                 return StatusCode(500, ex);
             }
         }
@@ -60,6 +61,7 @@ namespace PoseidonApi.Controllers
             }
             else
             {
+                _logger.LogWarning(ModelState.ToString());
                 return BadRequest(ModelState);
             }
         }
@@ -95,6 +97,7 @@ namespace PoseidonApi.Controllers
             }
             else
             {
+                _logger.LogWarning(ModelState.ToString());
                 return BadRequest(ModelState);
             }
         }
@@ -117,6 +120,7 @@ namespace PoseidonApi.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Delete)}");
                 return StatusCode(500, ex.Message);
             }
         }

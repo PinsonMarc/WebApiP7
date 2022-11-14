@@ -22,8 +22,8 @@ namespace PoseidonApi.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            string ADMIN_ID = "02174cf0–9412–4cfe - afbf - 59f706d72cf6";
-            string ROLE_ID = "341743f0 - asd2–42de - afbf - 59kmkkmk72cf6";
+            string ADMIN_ID = "02174cf0–9412–4cfe-afbf-59f706d72cf6";
+            string ROLE_ID = "341743f0-asd2–42de-afbf-59kmkkmk72cf6";
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<IdentityRole>().HasData(

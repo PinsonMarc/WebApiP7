@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace PoseidonApi.Middleware
@@ -23,15 +24,22 @@ namespace PoseidonApi.Middleware
             }
             finally
             {
+                var authString = context.User.Identity.IsAuthenticated ?
+                    $"From user : {context.User?.Identity?.Name}" :
+                    "From unauthenticated user";
+
                 _logger.LogInformation(
                     "Request {method} {url} " +
-                    "with claims: {claims}" +
-                    "=> {statusCode}",
-
+                    authString +
+                    " resolved with status => {statusCode}",
                     context.Request?.Method,
                     context.Request?.Path.Value,
-                    context.User?.Claims,
                     context.Response?.StatusCode);
+                
+                if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+                {
+                    await context.Response.WriteAsync("Token Validation Has Failed. Request Access Denied");
+                }
             }
         }
     }
