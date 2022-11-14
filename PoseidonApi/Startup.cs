@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using PoseidonApi.Model;
 using PoseidonApi.Repositories;
 using PoseidonApi.Services;
+using PoseidonApi.Middleware;
 
 namespace PoseidonApi
 {
@@ -69,6 +70,7 @@ namespace PoseidonApi
 
             app.UseRouting();
 
+            app.UseMiddleware<LoggingMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
 

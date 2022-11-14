@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace PoseidonApi.Controllers
 {
@@ -15,13 +16,15 @@ namespace PoseidonApi.Controllers
         where Entity : APIEntity
         where DTO : APIEntityDTO
     {
-        protected readonly IEntityRepository<Entity> _repo;
-        protected readonly IMapper _mapper;
+        protected IEntityRepository<Entity> _repo;
+        protected IMapper _mapper;
+        protected ILogger _logger;
 
-        public EntityController(IEntityRepository<Entity> repo, IMapper mapper)
+        public EntityController(IEntityRepository<Entity> repo, IMapper mapper, ILogger logger)
         {
             _repo = repo;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
