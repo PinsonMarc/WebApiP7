@@ -31,10 +31,10 @@ namespace PoseidonApi.Entities
     {
         public TradeValidator()
         {
-            RuleFor(x => x.BuyQuantity).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.SellPrice).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.BuyQuantity).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.SellQuantity).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.BuyQuantity).NotNull().GreaterThanOrEqualTo(0);
+            RuleFor(x => x.SellPrice).NotNull().GreaterThanOrEqualTo(0);
+            RuleFor(x => x.BuyPrice).NotNull().GreaterThanOrEqualTo(0);
+            RuleFor(x => x.SellQuantity).NotNull().GreaterThanOrEqualTo(0);
         }
     }
 }
