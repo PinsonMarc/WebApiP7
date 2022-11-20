@@ -52,6 +52,7 @@ namespace PoseidonApi.Controllers
         [HttpPost("[controller]/add")]
         public async Task<IActionResult> Add([FromBody] DTO dto)
         {
+            dto.Id = null;
             if (ModelState.IsValid)
             {
                 Entity entity = _mapper.Map<DTO, Entity>(dto);

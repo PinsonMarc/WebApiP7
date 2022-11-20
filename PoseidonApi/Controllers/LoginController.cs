@@ -61,7 +61,7 @@ namespace PoseidonApi.Controllers
         {
             string errorMessage = "You are not authorized for the requested data.";
 
-            return View(new UnauthorizedObjectResult(errorMessage));
+            return Unauthorized(errorMessage);
         }
     }
 }

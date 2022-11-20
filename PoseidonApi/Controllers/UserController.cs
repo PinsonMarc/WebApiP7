@@ -34,6 +34,8 @@ namespace PoseidonApi.Controllers
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
             _logger.LogInformation($"Registration Attempt for {userDTO.UserName} ");
+            
+            userDTO.Id = null;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -66,6 +68,7 @@ namespace PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(string Id)
         {
             _logger.LogInformation($"Delete attempt for user : {Id} ");
@@ -78,7 +81,7 @@ namespace PoseidonApi.Controllers
             {
                 var result = await _userManager.FindByIdAsync(Id);
 
-                if (result == null) return BadRequest();
+                if (result == null) return NotFound();
 
                 await _userManager.DeleteAsync(result);
                 return Ok();

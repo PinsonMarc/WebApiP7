@@ -1,3 +1,4 @@
+using AutoMapper.Configuration.Annotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PoseidonApi.Entities
@@ -6,6 +7,7 @@ namespace PoseidonApi.Entities
     {
 
         [BindNever]
-        public int Id { get; set; }
+        [Ignore]
+        public int? Id { get; set; }
     }
 }
