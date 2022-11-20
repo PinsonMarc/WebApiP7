@@ -1,13 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
-using Moq;
-using PoseidonApi.Entities;
 using PoseidonApi.Model;
-using PoseidonApi.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TheCarHub.Models;
 
 namespace PoseidonApi.Tests
@@ -26,7 +19,7 @@ namespace PoseidonApi.Tests
         {
             var myProfile = new MappingProfile();
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
-            
+
             return new Mapper(configuration);
         }
     }

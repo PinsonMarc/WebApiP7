@@ -1,5 +1,5 @@
-﻿using PoseidonApi.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using PoseidonApi.Entities;
 using PoseidonApi.Model;
 using System.Threading.Tasks;
 

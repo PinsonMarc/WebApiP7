@@ -1,14 +1,13 @@
 using AutoMapper;
-using PoseidonApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PoseidonApi.Entities;
 using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PoseidonApi.Controllers
 {
@@ -34,7 +33,7 @@ namespace PoseidonApi.Controllers
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
             _logger.LogInformation($"Registration Attempt for {userDTO.UserName} ");
-            
+
             userDTO.Id = null;
             if (!ModelState.IsValid)
             {
@@ -104,7 +103,7 @@ namespace PoseidonApi.Controllers
             try
             {
                 var result = await _userManager.GetUsersInRoleAsync("User");
-                var users = _mapper.Map<IList<ApiUser> , IList<UserDTO>>(result);
+                var users = _mapper.Map<IList<ApiUser>, IList<UserDTO>>(result);
                 foreach (var user in users)
                     user.Role = "User";
 

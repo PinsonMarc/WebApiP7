@@ -1,10 +1,9 @@
-using PoseidonApi.Controllers;
-using PoseidonApi.Controllers.Domain;
-using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PoseidonApi.Model.Identity;
+using PoseidonApi.Controllers;
+using PoseidonApi.Controllers.Domain;
+using PoseidonApi.Entities;
 
 namespace PoseidonApi.Model
 {
@@ -27,18 +26,21 @@ namespace PoseidonApi.Model
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole{
+                new IdentityRole
+                {
                     Name = "User",
                     NormalizedName = "USER"
                 },
-                new IdentityRole{
+                new IdentityRole
+                {
                     Id = ROLE_ID,
                     Name = "Administrator",
                     NormalizedName = "ADMINISTRATOR"
                 }
             );
-            
-            var apiUser = new ApiUser { 
+
+            var apiUser = new ApiUser
+            {
                 Id = ADMIN_ID,
                 UserName = "Administrator",
                 NormalizedUserName = "ADMINISTRATOR"

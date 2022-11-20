@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using Moq;
 using PoseidonApi.Entities;
+using System;
 using Xunit;
 
 namespace PoseidonApi.Tests.UnitTests
@@ -66,22 +64,22 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_All_Negative ()
+        public void Validate_All_Negative()
         {
             _dto.BuyQuantity = -1;
             _dto.SellPrice = -1;
             _dto.BuyPrice = -1;
-            _dto.SellQuantity= -1;
+            _dto.SellQuantity = -1;
 
             var result = _validator.TestValidate(_dto);
-            result.ShouldHaveValidationErrorFor(x => x.BuyQuantity).WithErrorCode("GreaterThanOrEqualValidator"); 
-            result.ShouldHaveValidationErrorFor(x => x.SellPrice).WithErrorCode("GreaterThanOrEqualValidator"); 
-            result.ShouldHaveValidationErrorFor(x => x.SellQuantity).WithErrorCode("GreaterThanOrEqualValidator") ;
-            result.ShouldHaveValidationErrorFor(x => x.BuyPrice).WithErrorCode("GreaterThanOrEqualValidator"); 
+            result.ShouldHaveValidationErrorFor(x => x.BuyQuantity).WithErrorCode("GreaterThanOrEqualValidator");
+            result.ShouldHaveValidationErrorFor(x => x.SellPrice).WithErrorCode("GreaterThanOrEqualValidator");
+            result.ShouldHaveValidationErrorFor(x => x.SellQuantity).WithErrorCode("GreaterThanOrEqualValidator");
+            result.ShouldHaveValidationErrorFor(x => x.BuyPrice).WithErrorCode("GreaterThanOrEqualValidator");
         }
 
         [Fact]
-        public void Validate_Default ()
+        public void Validate_Default()
         {
             var result = _validator.TestValidate(_dto);
 

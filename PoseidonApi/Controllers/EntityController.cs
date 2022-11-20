@@ -1,13 +1,13 @@
 using AutoMapper;
-using PoseidonApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using PoseidonApi.Entities;
 using PoseidonApi.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 
 namespace PoseidonApi.Controllers
 {
@@ -91,8 +91,8 @@ namespace PoseidonApi.Controllers
 
             if (ModelState.IsValid)
             {
-                entity = _mapper.Map<DTO, Entity>(dto);
-                entity.Id = id;
+                dto.Id = id;
+                _mapper.Map<DTO, Entity>(dto, entity);
                 await _repo.UpdateAsync(entity);
                 return RedirectToAction("list");
             }

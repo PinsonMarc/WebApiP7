@@ -35,7 +35,7 @@ namespace PoseidonApi.Middleware
                     context.Request?.Method,
                     context.Request?.Path.Value,
                     context.Response?.StatusCode);
-                
+
                 if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
                 {
                     await context.Response.WriteAsync("Token Validation Has Failed. Request Access Denied");

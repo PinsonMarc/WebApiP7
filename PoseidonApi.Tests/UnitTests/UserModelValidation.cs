@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using Moq;
 using PoseidonApi.Entities;
 using Xunit;
@@ -21,7 +18,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Empty_UserName ()
+        public void Validate_Empty_UserName()
         {
             _dto.UserName = "";
             _dto.Password = "Pass@word1";

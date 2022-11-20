@@ -1,5 +1,4 @@
 using FluentValidation;
-using System;
 
 namespace PoseidonApi.Entities
 {

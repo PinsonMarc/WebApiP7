@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using PoseidonApi.Controllers.Domain;
-using PoseidonApi.Controllers;
-using PoseidonApi.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -9,11 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PoseidonApi.Controllers;
+using PoseidonApi.Controllers.Domain;
+using PoseidonApi.Entities;
 using PoseidonApi.Model;
 using System.Collections.Generic;
 using System.Text;
 using TheCarHub.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace PoseidonApi.Services
 {

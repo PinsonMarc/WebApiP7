@@ -1,7 +1,7 @@
-﻿using PoseidonApi.Entities;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using PoseidonApi.Entities;
 using PoseidonApi.Model.Identity;
 using System;
 using System.Collections.Generic;
@@ -103,7 +103,7 @@ namespace PoseidonApi.Services
                 var isValid = await _userManager.VerifyUserTokenAsync(_user, "PoseidonApi", "RefreshToken", request.RefreshToken);
                 if (isValid)
                 {
-                    return new TokenRequest { Token = await CreateToken(), RefreshToken = await CreateRefreshToken() } ;
+                    return new TokenRequest { Token = await CreateToken(), RefreshToken = await CreateRefreshToken() };
                 }
                 await _userManager.UpdateSecurityStampAsync(_user);
             }

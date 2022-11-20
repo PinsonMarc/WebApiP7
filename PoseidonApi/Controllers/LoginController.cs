@@ -1,6 +1,6 @@
-using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PoseidonApi.Entities;
 using PoseidonApi.Model.Identity;
 using PoseidonApi.Services;
 using System;
@@ -48,7 +48,7 @@ namespace PoseidonApi.Controllers
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequest request)
         {
             var tokenRequest = await _authManager.VerifyRefreshToken(request);
-            if(tokenRequest is null)
+            if (tokenRequest is null)
             {
                 return Unauthorized();
             }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using Moq;
 using PoseidonApi.Entities;
 using Xunit;
@@ -46,7 +43,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Empty ()
+        public void Validate_Empty()
         {
             _dto.Account = string.Empty;
             _dto.Type = string.Empty;
@@ -56,9 +53,9 @@ namespace PoseidonApi.Tests.UnitTests
             result.ShouldHaveValidationErrorFor(x => x.Account).WithErrorCode("NotEmptyValidator");
             result.ShouldHaveValidationErrorFor(x => x.Type).WithErrorCode("NotEmptyValidator");
         }
-        
+
         [Fact]
-        public void Validate_Null ()
+        public void Validate_Null()
         {
             var result = _validator.TestValidate(_dto);
 

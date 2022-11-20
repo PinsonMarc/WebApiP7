@@ -1,4 +1,3 @@
-using PoseidonApi.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PoseidonApi.Entities;
+using PoseidonApi.Middleware;
 using PoseidonApi.Model;
 using PoseidonApi.Repositories;
 using PoseidonApi.Services;
-using PoseidonApi.Middleware;
 
 namespace PoseidonApi
 {
@@ -39,7 +39,7 @@ namespace PoseidonApi
             //Repos
             services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
             services.AddScoped<IAuthManager, AuthManager>();
-            
+
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureJWT(Configuration);

@@ -1,27 +1,14 @@
-using System;
-using System.Net.Http.Headers;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
-using PoseidonApi;
-using Xunit;
-using PoseidonApi.Model;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-using PoseidonApi.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using PoseidonApi.Repositories;
-using PoseidonApi.Services;
-using PoseidonApi.Middleware;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Net.Http.Json;
+using PoseidonApi.Entities;
+using PoseidonApi.Model;
 using PoseidonApi.Model.Identity;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace PoseidonApi.Tests.IntegrationTests
 {
@@ -59,7 +46,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         {
             var response = await TestClient.PostAsJsonAsync("/login", new UserDTO
             {
-                UserName= "Administrator",
+                UserName = "Administrator",
                 Password = "pass@word1"
             });
 
