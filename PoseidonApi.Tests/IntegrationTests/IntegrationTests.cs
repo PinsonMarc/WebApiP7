@@ -18,6 +18,7 @@ namespace PoseidonApi.Tests.IntegrationTests
 
         protected IntegrationTest()
         {
+            //This create a mirror application, at the exception of using in memory db
             var appFactory = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
                 {
@@ -31,17 +32,13 @@ namespace PoseidonApi.Tests.IntegrationTests
             TestClient = appFactory.CreateClient();
         }
 
+        //Add admin authentication directly to TestClient Headers
         protected async Task AuthenticateAsAdminAsync()
         {
             TestClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", await GetJwtAsync());
         }
 
-        //protected async Task<string> CreatePostAsync(CreatePostRequest request)
-        //{
-        //    var response = await TestClient.PostAsJsonAsync(ApiRoutes.Posts.Create, request);
-        //    return await response.Content.ReadAsAsync<PostResponse>();
-        //}
-
+        //Allow easy authentication for testing
         private async Task<string> GetJwtAsync()
         {
             var response = await TestClient.PostAsJsonAsync("/login", new UserDTO

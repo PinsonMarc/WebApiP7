@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace PoseidonApi.Controllers
 {
+    /*
+     *Generic abstract controller with very basic CRUD  
+     */
     [Authorize]
     public abstract class EntityController<Entity, DTO> : ControllerBase
         where Entity : APIEntity
@@ -92,8 +95,10 @@ namespace PoseidonApi.Controllers
             if (ModelState.IsValid)
             {
                 dto.Id = id;
+                //mapper map from source to destination
                 _mapper.Map<DTO, Entity>(dto, entity);
                 await _repo.UpdateAsync(entity);
+
                 return RedirectToAction("list");
             }
             else
@@ -117,7 +122,6 @@ namespace PoseidonApi.Controllers
                 await _repo.DeleteAsync(entity);
 
                 return RedirectToAction("list");
-
             }
             catch (Exception ex)
             {

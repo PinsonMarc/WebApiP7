@@ -21,6 +21,7 @@ namespace PoseidonApi.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Add roles
             string ADMIN_ID = "02174cf0–9412–4cfe-afbf-59f706d72cf6";
             string ROLE_ID = "341743f0-asd2–42de-afbf-59kmkkmk72cf6";
 
@@ -39,6 +40,7 @@ namespace PoseidonApi.Model
                 }
             );
 
+            //Seed administrator
             var apiUser = new ApiUser
             {
                 Id = ADMIN_ID,
@@ -48,9 +50,9 @@ namespace PoseidonApi.Model
 
             //set user password
             PasswordHasher<ApiUser> ph = new PasswordHasher<ApiUser>();
+            //Password is now hear in clear, an option might be to put this in environment var or in a vault
             apiUser.PasswordHash = ph.HashPassword(apiUser, "pass@word1");
 
-            //seed user
             modelBuilder.Entity<ApiUser>().HasData(apiUser);
 
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>

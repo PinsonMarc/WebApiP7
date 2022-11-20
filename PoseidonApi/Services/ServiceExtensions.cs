@@ -55,6 +55,8 @@ namespace PoseidonApi.Services
         {
             services.AddSwaggerGen(c =>
             {
+                //allow easy authentication on documentation
+                //Also detail identity to the document
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = @"JWT Authorization header using the Bearer scheme. 

@@ -6,6 +6,9 @@ using PoseidonApi.Repositories;
 
 namespace PoseidonApi.Controllers
 {
+    /***
+     * Define Entities and dependences for each controller
+     */
     public class BidListController : EntityController<BidList, BidListDTO>
     {
         public BidListController(IEntityRepository<BidList> repo, IMapper mapper, ILogger<BidListController> logger) : base(repo, mapper, logger) { }

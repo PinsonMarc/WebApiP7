@@ -21,7 +21,6 @@ namespace PoseidonApi.Tests.IntegrationTests
         public BidListControllerTest()
         {
             // Arrange
-
             _context = TestHelper.CreateInMemoryDb();
 
             var repo = new EntityRepository<BidList>(_context);
@@ -76,7 +75,6 @@ namespace PoseidonApi.Tests.IntegrationTests
             // Act
             var result = await _controller.DeleteAsync(5555);
             // Assert
-            //result.status
             Assert.IsType<NotFoundResult>(result);
         }
 
@@ -90,7 +88,6 @@ namespace PoseidonApi.Tests.IntegrationTests
             _dto.Commentary = "Comment";
             _dto.Type = "Type4";
             var result = await _controller.UpdateAsync(_context.BidLists.ToList().Count, _dto);
-
             // Assert
             Assert.Contains<BidList>(_context.BidLists,
                 x => x.Account == _dto.Account
@@ -109,7 +106,6 @@ namespace PoseidonApi.Tests.IntegrationTests
             _dto.Type = "Type6";
             _dto.Id = 8888;
             var result = await _controller.UpdateAsync(_context.BidLists.ToList().Count, _dto);
-
             // Assert
             Assert.DoesNotContain<BidList>(_context.BidLists, x => x.Id == 8888);
         }
@@ -120,7 +116,6 @@ namespace PoseidonApi.Tests.IntegrationTests
             // Act
             var result = await _controller.UpdateAsync(7777);
             // Assert
-            //result.status
             Assert.IsType<NotFoundResult>(result);
         }
     }

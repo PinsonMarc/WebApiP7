@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace PoseidonApi.Controllers
 {
+    //Adminstrator OPtions
     [Route("[controller]")]
     [Authorize(Roles = "Administrator")]
     public class UserController : ControllerBase
@@ -53,6 +54,7 @@ namespace PoseidonApi.Controllers
                     }
                     return BadRequest(ModelState);
                 }
+                //can only register with role "USER"
                 await _userManager.AddToRoleAsync(user, "User");
                 return Ok();
             }

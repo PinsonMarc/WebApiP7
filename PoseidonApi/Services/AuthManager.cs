@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 
 namespace PoseidonApi.Services
 {
+    /***
+     *Manage authentication across application
+     *Allow to add JWT to default identity
+     */
     public class AuthManager : IAuthManager
     {
         private readonly UserManager<ApiUser> _userManager;
@@ -37,6 +41,7 @@ namespace PoseidonApi.Services
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
+            //Lifetime determinate the time until the logging out the user
             var expiration = DateTime.Now.AddMinutes(Convert.ToDouble(
                 jwtSettings.GetSection("lifetime").Value));
 
@@ -53,9 +58,9 @@ namespace PoseidonApi.Services
         private async Task<List<Claim>> GetClaims()
         {
             var claims = new List<Claim>
-             {
-                 new Claim(ClaimTypes.Name, _user.UserName)
-             };
+            {
+                new Claim(ClaimTypes.Name, _user.UserName)
+            };
 
             var roles = await _userManager.GetRolesAsync(_user);
 
@@ -70,6 +75,7 @@ namespace PoseidonApi.Services
         private SigningCredentials GetSigningCredentials()
         {
             var jwtSettings = _configuration.GetSection("Jwt");
+            //The key is on the conf for now
             var key = jwtSettings.GetSection("Key").Value;
             var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
 
@@ -83,6 +89,7 @@ namespace PoseidonApi.Services
             return (_user != null && validPassword);
         }
 
+        //Refresh token allow for easy reconnect without logging in again
         public async Task<string> CreateRefreshToken()
         {
             await _userManager.RemoveAuthenticationTokenAsync(_user, "PoseidonApi", "RefreshToken");

@@ -24,6 +24,8 @@ namespace PoseidonApi.Middleware
             }
             finally
             {
+                //Log Method, status and user info on each endpoint
+
                 var authString = context.User.Identity.IsAuthenticated ?
                     $"From user : {context.User?.Identity?.Name}" :
                     "From unauthenticated user";
