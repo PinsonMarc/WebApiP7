@@ -6,7 +6,7 @@ using Moq;
 using PoseidonApi.Entities;
 using Xunit;
 
-namespace P3AddNewFunctionalityDotNetCore.Tests
+namespace PoseidonApi.Tests.UnitTests
 {
     public class BidListModelValidation
     {

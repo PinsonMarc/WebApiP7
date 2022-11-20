@@ -31,7 +31,7 @@ namespace PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("[controller]/list")]
         [HttpGet("[controller]")]
-        public async Task<ActionResult<IEnumerable<DTO>>> List()
+        public async Task<ActionResult<IEnumerable<DTO>>> ListAsync()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace PoseidonApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(List)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(ListAsync)}");
                 return StatusCode(500, ex);
             }
         }
@@ -50,7 +50,7 @@ namespace PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("[controller]/add")]
-        public async Task<IActionResult> Add([FromBody] DTO dto)
+        public async Task<IActionResult> AddAsync([FromBody] DTO dto)
         {
             dto.Id = null;
             if (ModelState.IsValid)
@@ -70,7 +70,7 @@ namespace PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("[controller]/update/{id}")]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> UpdateAsync(int id)
         {
             Entity entity = await _repo.GetByIdAsync(id);
             if (entity == null) return NotFound();
@@ -84,7 +84,7 @@ namespace PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("[controller]/update/{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] DTO dto)
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] DTO dto)
         {
             Entity entity = await _repo.GetByIdAsync(id);
             if (entity == null) return NotFound();
@@ -107,7 +107,7 @@ namespace PoseidonApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("[controller]/delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace PoseidonApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Delete)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(DeleteAsync)}");
                 return StatusCode(500, ex.Message);
             }
         }
