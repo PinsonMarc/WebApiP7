@@ -44,6 +44,7 @@ namespace PoseidonApi.Controllers
             try
             {
                 var user = _mapper.Map<ApiUser>(userDTO);
+                user.Id = Guid.NewGuid().ToString();
                 var result = await _userManager.CreateAsync(user, userDTO.Password);
 
                 if (!result.Succeeded)

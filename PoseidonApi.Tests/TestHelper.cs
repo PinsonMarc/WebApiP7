@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PoseidonApi.Model;
+using System.Net.Http;
+using System.Text;
 using TheCarHub.Models;
 
 namespace PoseidonApi.Tests
@@ -21,6 +24,13 @@ namespace PoseidonApi.Tests
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
 
             return new Mapper(configuration);
+        }
+
+        public static StringContent CreateStringContent(object content)
+        {
+
+            var json = JsonConvert.SerializeObject(content);
+            return new StringContent(json, Encoding.UTF8, "application/json");
         }
     }
 }
