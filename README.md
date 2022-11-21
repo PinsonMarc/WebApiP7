@@ -9,12 +9,14 @@ Build using:
 - EF Core, automapper, FluentValidation
 - Asp.net Identity & JWT
 - xUnit & Moq
+- Swagger
 
 # set up :
 - Require .net core 3.1 and SQL Server
 - Download the project in your machine
 - Update the "DefaultConnection" in appsettings.json
 - Run the solution (DB created and seeded on first app start)
+- documentation is located on the "/swagger" endpoint
 
 to login, get the token from the /login endpoint using admin credentials : 
  - userName => administrator
