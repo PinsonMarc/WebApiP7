@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using PoseidonApi.Entities;
 using PoseidonApi.Model;
 using PoseidonApi.Model.Identity;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -24,7 +25,9 @@ namespace PoseidonApi.Tests.IntegrationTests
                 {
                     builder.ConfigureServices(services =>
                     {
-                        services.RemoveAll(typeof(ApplicationDbContext));
+                        var descriptor = services.SingleOrDefault(
+                            d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
+                        services.Remove(descriptor);
                         services.AddDbContext<ApplicationDbContext>(options => { options.UseInMemoryDatabase("TestDb"); });
                     });
                 });

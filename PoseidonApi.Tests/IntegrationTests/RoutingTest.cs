@@ -79,7 +79,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         {
             UserDTO dto = new UserDTO
             {
-                UserName = "testUser",
+                UserName = "integrationTestUser2",
                 Password = "Myp@ssword1"
             };
             UserLoginDTO loginDTO = new UserLoginDTO

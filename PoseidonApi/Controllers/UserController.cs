@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PoseidonApi.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PoseidonApi.Controllers
@@ -105,12 +108,18 @@ namespace PoseidonApi.Controllers
 
             try
             {
-                var result = await _userManager.GetUsersInRoleAsync("User");
-                var users = _mapper.Map<IList<ApiUser>, IList<UserDTO>>(result);
-                foreach (var user in users)
-                    user.Role = "User";
-
-                return Ok(result);
+                List<ApiUser> result = _userManager.Users.ToList();
+                var dtos = new List<UserDTO>();
+                foreach (var user in result)
+                {
+                    var roles = await _userManager.GetRolesAsync(user);
+                    dtos.Add(new UserDTO {
+                        UserName = user.UserName,
+                        Fullname = user.Fullname,
+                        Role = roles[0]
+                    });
+                }
+                return Ok(dtos);
             }
             catch (Exception ex)
             {
