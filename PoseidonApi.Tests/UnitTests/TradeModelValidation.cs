@@ -19,7 +19,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_User_No_Error_Minimum()
+        public void ValidateUserNoErrorMinimum()
         {
 
             _dto.BuyQuantity = 1;
@@ -33,7 +33,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_User_No_Error_All_Info()
+        public void ValidateUserNoErrorAllInfo()
         {
 
             _dto.Account = "Account";
@@ -64,7 +64,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_All_Negative()
+        public void ValidateAllNegative()
         {
             _dto.BuyQuantity = -1;
             _dto.SellPrice = -1;
@@ -79,7 +79,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Default()
+        public void ValidateDefault()
         {
             var result = _validator.TestValidate(_dto);
 

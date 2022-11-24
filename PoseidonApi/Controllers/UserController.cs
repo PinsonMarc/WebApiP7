@@ -69,14 +69,14 @@ namespace PoseidonApi.Controllers
             }
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete("delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(string Id)
+        public async Task<IActionResult> Delete(string id)
         {
-            _logger.LogInformation($"Delete attempt for user : {Id} ");
+            _logger.LogInformation($"Delete attempt for user : {id} ");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -84,7 +84,7 @@ namespace PoseidonApi.Controllers
 
             try
             {
-                var result = await _userManager.FindByIdAsync(Id);
+                var result = await _userManager.FindByIdAsync(id);
 
                 if (result == null) return NotFound();
 
@@ -114,6 +114,7 @@ namespace PoseidonApi.Controllers
                 {
                     var roles = await _userManager.GetRolesAsync(user);
                     dtos.Add(new UserDTO {
+                        Id = user.Id,
                         UserName = user.UserName,
                         Fullname = user.Fullname,
                         Role = roles[0]

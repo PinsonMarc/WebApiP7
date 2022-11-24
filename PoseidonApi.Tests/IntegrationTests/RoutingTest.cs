@@ -18,7 +18,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         [InlineData("/Rating/list")]
         [InlineData("/Rule/list")]
         [InlineData("/User/list")]
-        public async Task Get_WhitoutAuth_ReturnUnauthorize(string url)
+        public async Task GetWhitoutAuthReturnUnauthorize(string url)
         {
             var response = await TestClient.GetAsync(url);
 
@@ -29,7 +29,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         [InlineData("/Rating/add")]
         [InlineData("/Rule/add")]
         [InlineData("/User/register")]
-        public async Task Post_WhitoutAuth_ReturnUnauthorize(string url)
+        public async Task PostWhitoutAuthReturnUnauthorize(string url)
         {
             var response = await TestClient.PostAsync(url, new StringContent(""));
 
@@ -40,7 +40,7 @@ namespace PoseidonApi.Tests.IntegrationTests
 
         [Theory]
         [InlineData("/Rating/delete/1")]
-        public async Task Delete_WhitoutAuth_ReturnUnauthorize(string url)
+        public async Task DeleteWhitoutAuthReturnUnauthorize(string url)
         {
             var response = await TestClient.DeleteAsync(url);
 
@@ -48,7 +48,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task GetSwagger_ReturnSuccess()
+        public async Task GetSwaggerReturnSuccess()
         {
             // Act
             var response = await TestClient.GetAsync("/swagger");
@@ -64,7 +64,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         [InlineData("/Rating/list")]
         [InlineData("/Rule/list")]
         [InlineData("/User/list")]
-        public async Task Get_WithAuth_ReturnSuccess(string url)
+        public async Task GetWithAuthReturnSuccess(string url)
         {
             await AuthenticateAsAdminAsync();
             var response = await TestClient.GetAsync(url);
@@ -75,7 +75,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Register_And_Login_ReturnSuccess()
+        public async Task RegisterAndLoginReturnSuccess()
         {
             UserDTO dto = new UserDTO
             {

@@ -18,7 +18,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_No_Error()
+        public void ValidateNoError()
         {
             _dto.Account = "Account";
             _dto.Type = "Type";
@@ -29,7 +29,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Quantity()
+        public void ValidateQuantity()
         {
             _dto.Account = "Account";
             _dto.Type = "Type";
@@ -43,7 +43,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Empty()
+        public void ValidateEmpty()
         {
             _dto.Account = string.Empty;
             _dto.Type = string.Empty;
@@ -55,7 +55,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Null()
+        public void ValidateNull()
         {
             var result = _validator.TestValidate(_dto);
 

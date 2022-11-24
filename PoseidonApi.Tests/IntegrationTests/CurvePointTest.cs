@@ -32,7 +32,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Add_CheckDbChange()
+        public async Task AddCheckDbChange()
         {
             _dto.CurveId = 1;
             // Act
@@ -44,7 +44,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Add_IdNotInclueded()
+        public async Task AddIdNotInclueded()
         {
             _dto.CurveId = 1;
             _dto.Id = 999999;
@@ -56,7 +56,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Delete_CheckDbChange()
+        public async Task DeleteCheckDbChange()
         {
             // Act
             _dto.CurveId = 4;
@@ -68,7 +68,7 @@ namespace PoseidonApi.Tests.IntegrationTests
 
 
         [Fact]
-        public async Task Delete_NotFound()
+        public async Task DeleteNotFound()
         {
             // Act
             var result = await _controller.DeleteAsync(5555);
@@ -77,7 +77,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_CheckDbChange()
+        public async Task UpdateCheckDbChange()
         {
             _dto.CurveId = 1;
             var now = DateTime.Now;
@@ -93,7 +93,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_CannotChangeId()
+        public async Task UpdateCannotChangeId()
         {
             _dto.CurveId = 5;
             // Act
@@ -105,7 +105,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_NotFound()
+        public async Task UpdateNotFound()
         {
             // Act
             var result = await _controller.UpdateAsync(7777);

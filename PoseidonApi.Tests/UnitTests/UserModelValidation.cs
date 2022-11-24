@@ -18,7 +18,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Empty_UserName()
+        public void ValidateEmptyUserName()
         {
             _dto.UserName = "";
             _dto.Password = "Pass@word1";
@@ -30,7 +30,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_PasswordTooShort()
+        public void ValidatePasswordTooShort()
         {
             _dto.UserName = "MyUserName";
             _dto.Password = "Pw";
@@ -41,7 +41,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Password_No_Upper_Case()
+        public void ValidatePasswordNoUpperCase()
         {
             _dto.UserName = "MyUserName";
             _dto.Password = "pass@word1";
@@ -52,7 +52,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Password_No_Number()
+        public void ValidatePasswordNoNumber()
         {
             _dto.UserName = "MyUserName";
             _dto.Password = "Pass@word";
@@ -63,7 +63,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_Password_No_Symbol()
+        public void ValidatePasswordNoSymbol()
         {
             _dto.UserName = "MyUserName";
             _dto.Password = "Password1";
@@ -74,7 +74,7 @@ namespace PoseidonApi.Tests.UnitTests
         }
 
         [Fact]
-        public void Validate_User_No_Error()
+        public void ValidateUserNoError()
         {
             _dto.UserName = "MyUserName";
             _dto.Password = "Pass@word1";

@@ -31,7 +31,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Add_CheckDbChange()
+        public async Task AddCheckDbChange()
         {
             _dto.Account = "Account1";
             _dto.Type = "Type1";
@@ -44,7 +44,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Add_IdNotInclueded()
+        public async Task AddIdNotInclueded()
         {
             _dto.Account = "Account2";
             _dto.Type = "Type2";
@@ -57,7 +57,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Delete_CheckDbChange()
+        public async Task DeleteCheckDbChange()
         {
             // Act
             _dto.Account = "Account3";
@@ -70,7 +70,7 @@ namespace PoseidonApi.Tests.IntegrationTests
 
 
         [Fact]
-        public async Task Delete_NotFound()
+        public async Task DeleteNotFound()
         {
             // Act
             var result = await _controller.DeleteAsync(5555);
@@ -79,7 +79,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_CheckDbChange()
+        public async Task UpdateCheckDbChange()
         {
             _dto.Account = "Account3";
             _dto.Type = "Type3";
@@ -96,7 +96,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_CannotChangeId()
+        public async Task UpdateCannotChangeId()
         {
 
             _dto.Account = "Account5";
@@ -111,7 +111,7 @@ namespace PoseidonApi.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_NotFound()
+        public async Task UpdateNotFound()
         {
             // Act
             var result = await _controller.UpdateAsync(7777);
